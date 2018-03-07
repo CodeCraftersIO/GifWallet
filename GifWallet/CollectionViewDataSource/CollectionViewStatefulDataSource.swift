@@ -5,13 +5,9 @@
 
 import UIKit
 
-protocol GIFViewModelConfigurable {
-    func configureFor(vm: GIFCollectionViewCell.VM)
-}
+class CollectionViewStatefulDataSource<Cell: ViewModelConfigurable & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
 
-class CollectionViewStatefulDataSource<Cell: GIFViewModelConfigurable & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
-
-    init(state: ListState<GIFCollectionViewCell.VM>,
+    init(state: ListState<Cell.VM>,
          collectionView: UICollectionView) {
         self.state = state
         self.collectionView = collectionView
@@ -21,7 +17,7 @@ class CollectionViewStatefulDataSource<Cell: GIFViewModelConfigurable & UICollec
     }
 
     public weak var collectionView: UICollectionView!
-    var state: ListState<GIFCollectionViewCell.VM> {
+    var state: ListState<Cell.VM> {
         didSet {
             collectionView.reloadData()
         }
