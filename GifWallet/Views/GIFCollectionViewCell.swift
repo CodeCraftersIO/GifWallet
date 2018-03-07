@@ -6,7 +6,7 @@
 import UIKit
 import SDWebImage
 
-class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
+class GIFCollectionViewCell: UICollectionViewCell, GIFViewModelConfigurable {
     
     private enum Constants {
         static let margin: CGFloat = 3

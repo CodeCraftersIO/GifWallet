@@ -9,8 +9,8 @@ class GIFWalletViewController: UIViewController {
 
     var presenter: GIFWalletPresenterType = GIFWalletViewController.MockDataPresenter()
 
-    private var collectionView: UICollectionView!
-    private var dataSource: CollectionViewStatefulDataSource!
+    var collectionView: UICollectionView!
+    var dataSource: CollectionViewStatefulDataSource<GIFCollectionViewCell>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,9 @@ class GIFWalletViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.pinToSuperview()
         collectionView.backgroundColor = .white
-        dataSource = CollectionViewStatefulDataSource(
+        dataSource = CollectionViewStatefulDataSource<GIFCollectionViewCell>(
             state: .loaded(data: presenter.fetchData()),
-            collectionView: collectionView,
-            cellType: GIFCollectionViewCell.self
+            collectionView: collectionView
         )
     }
 }
