@@ -19,6 +19,7 @@ class GIFWalletViewController: UIViewController {
         title = "Your GIFs"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGif))
         setupCollectionView()
+        fetchData()
     }
     
     @objc func addNewGif() {
@@ -33,8 +34,19 @@ class GIFWalletViewController: UIViewController {
         collectionView.pinToSuperview()
         collectionView.backgroundColor = .white
         dataSource = CollectionViewStatefulDataSource<GIFCollectionViewCell>(
-            state: .loaded(data: presenter.fetchData()),
+            state: .loading,
             collectionView: collectionView
         )
+    }
+    
+    private func fetchData() {
+        dataSource.state = .loading
+        self.presenter.fetchData { (data, error) in
+            guard error == nil, let data = data else {
+                self.dataSource.state = .failure(error: error!)
+                return
+            }
+            self.dataSource.state = .loaded(data: data)
+        }
     }
 }
