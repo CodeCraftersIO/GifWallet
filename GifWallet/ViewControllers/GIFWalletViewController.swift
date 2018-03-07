@@ -5,13 +5,13 @@
 import UIKit
 import SDWebImage
 
-class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
+class GIFWalletViewController: UIViewController {
 
     var presenter: GIFWalletPresenterType = GIFWalletViewController.MockDataPresenter()
 
     private var collectionView: UICollectionView!
-    private var data: [GIFCollectionViewCell.VM]?
-    
+    private var dataSource: CollectionViewStatefulDataSource!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -19,16 +19,11 @@ class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
         title = "Your GIFs"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGif))
         setupCollectionView()
-        fetchData()
     }
     
     @objc func addNewGif() {
         let createVC = GIFCreateViewController.Factory.viewController()
         self.present(createVC, animated: true, completion: nil)
-    }
-    
-    private func fetchData() {
-        self.data = presenter.fetchData()
     }
     
     private func setupCollectionView() {
@@ -37,21 +32,10 @@ class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
         view.addSubview(collectionView)
         collectionView.pinToSuperview()
         collectionView.backgroundColor = .white
-        collectionView.dataSource = self
-        
-        collectionView.register(GIFCollectionViewCell.self, forCellWithReuseIdentifier: "GIFCollectionViewCell")
+        dataSource = CollectionViewStatefulDataSource(
+            state: .loaded(data: presenter.fetchData()),
+            collectionView: collectionView,
+            cellType: GIFCollectionViewCell.self
+        )
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data!.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GIFCollectionViewCell", for: indexPath) as? GIFCollectionViewCell else {
-            fatalError()
-        }
-        cell.configureFor(vm: data![indexPath.item])
-        return cell
-    }
-
 }

@@ -27,6 +27,8 @@
 		F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */; };
 		F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */; };
 		F5C7BECF218B54360049C729 /* GIFWalletViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */; };
+		F5C7BED3218B67790049C729 /* ListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BED1218B67790049C729 /* ListState.swift */; };
+		F5C7BED4218B67790049C729 /* CollectionViewStatefulDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BED2218B67790049C729 /* CollectionViewStatefulDataSource.swift */; };
 		F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D1D43D20499B880012E800 /* AppDelegate.swift */; };
 		F5D1D44720499B880012E800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44620499B880012E800 /* Assets.xcassets */; };
 		F5D1D44A20499B880012E800 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44820499B880012E800 /* LaunchScreen.storyboard */; };
@@ -110,6 +112,8 @@
 		F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFWalletPresenter.swift; sourceTree = "<group>"; };
 		F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFWalletViewControllerTests.swift; sourceTree = "<group>"; };
+		F5C7BED1218B67790049C729 /* ListState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListState.swift; sourceTree = "<group>"; };
+		F5C7BED2218B67790049C729 /* CollectionViewStatefulDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewStatefulDataSource.swift; sourceTree = "<group>"; };
 		F5D1D43A20499B880012E800 /* GifWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D1D43D20499B880012E800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5D1D44620499B880012E800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,6 +257,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F5C7BED0218B67790049C729 /* CollectionViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F5C7BED1218B67790049C729 /* ListState.swift */,
+				F5C7BED2218B67790049C729 /* CollectionViewStatefulDataSource.swift */,
+			);
+			path = CollectionViewDataSource;
+			sourceTree = "<group>";
+		};
 		F5D1D43120499B870012E800 = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +297,7 @@
 				F5D1D43D20499B880012E800 /* AppDelegate.swift */,
 				F5D1D44620499B880012E800 /* Assets.xcassets */,
 				F5D1D44820499B880012E800 /* LaunchScreen.storyboard */,
+				F5C7BED0218B67790049C729 /* CollectionViewDataSource */,
 				F5C7BEB2218B358B0049C729 /* Protocols */,
 				F5D1D4942049A0790012E800 /* Configurations */,
 				F5C7BEA5218B2AA10049C729 /* Extensions */,
@@ -637,6 +651,7 @@
 				F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */,
 				F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */,
 				F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */,
+				F5C7BED3218B67790049C729 /* ListState.swift in Sources */,
 				F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */,
 				F5C7BEC6218B4D110049C729 /* UIImageView+Extensions.swift in Sources */,
 				F5C7BEB6218B44A00049C729 /* GIFWalletViewController.swift in Sources */,
@@ -644,6 +659,7 @@
 				F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */,
 				F5C7BEB4218B381C0049C729 /* UILabel+Wallet.swift in Sources */,
 				F5C7BEC9218B4ECA0049C729 /* GIFCollectionViewCell.swift in Sources */,
+				F5C7BED4218B67790049C729 /* CollectionViewStatefulDataSource.swift in Sources */,
 				F5C7BEB8218B45240049C729 /* GIFCreateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
