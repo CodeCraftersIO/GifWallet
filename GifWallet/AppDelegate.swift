@@ -3,7 +3,7 @@
 //  GifWallet
 //
 //  Created by Pierluigi Cifani on 02/03/2018.
-//  Copyright © 2018 Pierluigi Cifani. All rights reserved.
+//  Copyright © 2018 Code Crafters. All rights reserved.
 //
 
 import UIKit
@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
+    private let wireframe = Wireframe()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = UIViewController()
+        self.window?.rootViewController = wireframe.initialViewController()
         self.window?.makeKeyAndVisible()
 
         return true
@@ -31,3 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 }
 
+class Wireframe {
+
+    init() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.barTintColor = UIColor.GifWallet.brand
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBarAppearance.tintColor = .white
+        navigationBarAppearance.barStyle = .black
+    }
+
+    func initialViewController() -> UIViewController {
+        return AutoLayoutTestsViewController()
+    }
+
+}
