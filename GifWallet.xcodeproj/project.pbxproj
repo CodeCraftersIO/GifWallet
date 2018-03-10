@@ -14,6 +14,8 @@
 		F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */; };
 		F5C7BEAA218B30BD0049C729 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA9218B30BD0049C729 /* MockLoader.swift */; };
 		F5C7BEAD218B30C50049C729 /* GIFDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEAC218B30C50049C729 /* GIFDetailsPresenter.swift */; };
+		F5C7BEAF218B35000049C729 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEAE218B35000049C729 /* UIView+Extension.swift */; };
+		F5C7BEB1218B35880049C729 /* ViewModelConfiguratione.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEB0218B35880049C729 /* ViewModelConfiguratione.swift */; };
 		F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D1D43D20499B880012E800 /* AppDelegate.swift */; };
 		F5D1D44720499B880012E800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44620499B880012E800 /* Assets.xcassets */; };
 		F5D1D44A20499B880012E800 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44820499B880012E800 /* LaunchScreen.storyboard */; };
@@ -83,6 +85,8 @@
 		F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFDetailsViewController.swift; sourceTree = "<group>"; };
 		F5C7BEA9218B30BD0049C729 /* MockLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 		F5C7BEAC218B30C50049C729 /* GIFDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFDetailsPresenter.swift; sourceTree = "<group>"; };
+		F5C7BEAE218B35000049C729 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F5C7BEB0218B35880049C729 /* ViewModelConfiguratione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelConfiguratione.swift; sourceTree = "<group>"; };
 		F5D1D43A20499B880012E800 /* GifWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D1D43D20499B880012E800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5D1D44620499B880012E800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C7BEA3218B2A9E0049C729 /* UIColor+Extension.swift */,
+				F5C7BEAE218B35000049C729 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -189,6 +194,14 @@
 				F5C7BEAC218B30C50049C729 /* GIFDetailsPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F5C7BEB2218B358B0049C729 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F5C7BEB0218B35880049C729 /* ViewModelConfiguratione.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		F5D1D43120499B870012E800 = {
@@ -222,6 +235,7 @@
 				F5D1D43D20499B880012E800 /* AppDelegate.swift */,
 				F5D1D44620499B880012E800 /* Assets.xcassets */,
 				F5D1D44820499B880012E800 /* LaunchScreen.storyboard */,
+				F5C7BEB2218B358B0049C729 /* Protocols */,
 				F5D1D4942049A0790012E800 /* Configurations */,
 				F5C7BEA5218B2AA10049C729 /* Extensions */,
 				F5C7BEA8218B30BD0049C729 /* Mocks */,
@@ -452,12 +466,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,6 +526,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C7BEAF218B35000049C729 /* UIView+Extension.swift in Sources */,
+				F5C7BEB1218B35880049C729 /* ViewModelConfiguratione.swift in Sources */,
 				F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */,
 				F5C7BEAA218B30BD0049C729 /* MockLoader.swift in Sources */,
 				F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */,
