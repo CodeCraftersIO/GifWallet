@@ -8,11 +8,6 @@ import Deferred
 
 public class DataStore {
 
-    public enum Kind {
-        case sqlite
-        case memory
-    }
-
     private let persistentStore: NSPersistentContainer
     public var storeIsReady: Bool = false
 
@@ -45,8 +40,57 @@ public class DataStore {
         }
         return Task(deferred)
     }
+
+    //MARK: GIF Creation
+    func createGIF(giphyID: String, title: String, subtitle: String, url: URL, tags: Set<String>) -> Task<()> {
+        let deferred = Deferred<TaskResult<()>>()
+        guard self.storeIsReady else {
+            deferred.fill(with: TaskResult<()>(failure: DataStore.Error.dataStoreNotInitialized))
+            return Task(deferred)
+        }
+
+        self.persistentStore.performBackgroundTask { (moc) in
+            let managedGIF = ManagedGIF(entity: ManagedGIF.entity(), insertInto: moc)
+            managedGIF.title = title
+            managedGIF.subtitle = subtitle
+            managedGIF.remoteURL = url.absoluteString
+            managedGIF.giphyID = giphyID
+            managedGIF.creationDate = Date()
+
+            do {
+                try moc.save()
+                deferred.fill(with: .init(success: ()))
+            } catch let error {
+                deferred.fill(with: .init(failure: error))
+            }
+        }
+        return Task(deferred)
+    }
+
+    func fetchGIF(id: String) throws -> ManagedGIF? {
+        guard self.storeIsReady else {
+            throw DataStore.Error.dataStoreNotInitialized
+        }
+
+        let fetchRequest: NSFetchRequest<ManagedGIF> = ManagedGIF.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "giphyID == %@", id)
+        let managedGIFs = try self.persistentStore.viewContext.fetch(fetchRequest)
+        return managedGIFs.first
+    }
 }
 
+
+extension DataStore {
+
+    public enum Kind {
+        case sqlite
+        case memory
+    }
+
+    public enum Error: Swift.Error {
+        case dataStoreNotInitialized
+    }
+}
 extension DataStore.Kind {
     fileprivate var coreDataRepresentation: String {
         switch self {
