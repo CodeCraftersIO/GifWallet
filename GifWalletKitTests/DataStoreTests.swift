@@ -36,6 +36,35 @@ class DataStoreTests: XCTestCase {
         XCTAssert(managedGIF.title == "James Bond")
         XCTAssert(managedGIF.creationDate != nil)
     }
+    
+    func testCreateAFetchGIFTwice() throws {
+
+        let id = "007"
+        let createTask1 = dataStore.createGIF(
+            giphyID: "007",
+            title: "James Bond",
+            subtitle: "GoldenEye",
+            url: URL(string: "google.com/007")!,
+            tags: ["007"]
+        )
+        _ = try waitForTask(createTask1)
+
+        let createTask2 = dataStore.createGIF(
+            giphyID: "007",
+            title: "James Bond",
+            subtitle: "Tomorrow Never Dies",
+            url: URL(string: "google.com/007")!,
+            tags: ["007"]
+        )
+        _ = try waitForTask(createTask2)
+
+        guard let managedGIF = try dataStore.fetchGIF(id: id) else {
+            throw Error.objectUnwrappedFailed
+        }
+        XCTAssert(managedGIF.giphyID == id)
+        XCTAssert(managedGIF.subtitle == "Tomorrow Never Dies")
+
+    }
 
     enum Error: Swift.Error {
         case objectUnwrappedFailed
