@@ -80,13 +80,40 @@ class DataStoreTests: XCTestCase {
         guard managedGIFs.count > 0 else {
             throw Error.objectUnwrappedFailed
         }
-
         XCTAssert(managedGIFs.count == 1)
     }
 
+    func testQueryAllGIFsChronologically() throws {
+        let JamesBondID = "007"
+        let createTask1 = dataStore.createGIF(
+            giphyID: "007",
+            title: "James Bond",
+            subtitle: "GoldenEye",
+            url: URL(string: "google.com/007")!,
+            tags: ["007"]
+        )
+        _ = try waitForTask(createTask1)
 
+        let SupermanID = "Superman"
+        let createTask2 = dataStore.createGIF(
+            giphyID: SupermanID,
+            title: "Superman",
+            subtitle: "Kryptonite",
+            url: URL(string: "google.com/superman")!,
+            tags: ["Superman"]
+        )
+        _ = try waitForTask(createTask2)
+
+        let managedGIFs = try dataStore.fetchGIFsSortedByCreationDate()
+        guard let firstGIF = managedGIFs.first, let secondGIF = managedGIFs.last else {
+            throw Error.objectUnwrappedFailed
+        }
+
+        XCTAssert(firstGIF.giphyID == SupermanID)
+        XCTAssert(secondGIF.giphyID == JamesBondID)
+    }
+    
     enum Error: Swift.Error {
         case objectUnwrappedFailed
     }
 }
-
