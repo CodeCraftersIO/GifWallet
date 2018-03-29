@@ -12,7 +12,7 @@ class DataStoreTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dataStore = DataStore(kind: .memory)
+        dataStore = DataStore(kind: .memory, shouldLoadAsync: false)
         let task = dataStore.loadAndMigrateIfNeeded()
         _ = try? waitForTask(task)
         XCTAssert(dataStore.storeIsReady)
