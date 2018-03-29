@@ -90,19 +90,36 @@ public class DataStore {
         return self.fetchTag(name: tag, moc: self.persistentStore.viewContext)?.gifs ?? []
     }
 
-    func fetchGIFsSortedByCreationDate() throws -> [ManagedGIF] {
+    func fetchGIFsSortedByCreationDate() -> Task<[ManagedGIF]> {
         return self.fetchGIFsSortedByCreationDate(moc: self.persistentStore.viewContext)
     }
 
     //MARK: Private
 
-    private func fetchGIFsSortedByCreationDate(moc: NSManagedObjectContext) -> [ManagedGIF] {
+    private func fetchGIFsSortedByCreationDate(moc: NSManagedObjectContext) -> Task<[ManagedGIF]> {
         assert(self.storeIsReady)
+        let deferred = Deferred<TaskResult<[ManagedGIF]>>()
+
         let fetchRequest: NSFetchRequest<ManagedGIF> = ManagedGIF.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: #keyPath(ManagedGIF.creationDate), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        let managedGIFs = try? moc.fetch(fetchRequest)
-        return managedGIFs ?? []
+
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest, completionBlock: { (result) in
+            guard let managedGIFs = result.finalResult else {
+                let error: Swift.Error = result.operationError ?? Error.fetchFailed
+                deferred.fill(with: TaskResult<[ManagedGIF]>.init(failure: error))
+                return
+            }
+            deferred.fill(with: TaskResult<[ManagedGIF]>.init(success: managedGIFs))
+        })
+
+        do {
+            try moc.execute(asyncFetchRequest)
+        } catch let error {
+            deferred.fill(with: TaskResult<[ManagedGIF]>.init(failure: error))
+        }
+
+        return Task(deferred)
     }
 
     private func fetchGIF(id: String, moc: NSManagedObjectContext) -> ManagedGIF? {
@@ -130,6 +147,7 @@ extension DataStore {
     }
 
     public enum Error: Swift.Error {
+        case fetchFailed
         case dataStoreNotInitialized
     }
 }

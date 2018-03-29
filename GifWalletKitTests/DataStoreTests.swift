@@ -104,7 +104,8 @@ class DataStoreTests: XCTestCase {
         )
         _ = try waitForTask(createTask2)
 
-        let managedGIFs = try dataStore.fetchGIFsSortedByCreationDate()
+        let fetchTask = dataStore.fetchGIFsSortedByCreationDate()
+        let managedGIFs = try waitForTask(fetchTask)
         guard let firstGIF = managedGIFs.first, let secondGIF = managedGIFs.last else {
             throw Error.objectUnwrappedFailed
         }
