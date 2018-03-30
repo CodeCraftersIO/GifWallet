@@ -84,6 +84,15 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
         )
     }
 
+    private func reloadSection(sectionToReload: GIFCreateFormValidator.Section) {
+        guard let sectionToReloadIndex = formValidator.requiredSections.index(of: sectionToReload) else {
+            return
+        }
+        tableView.performBatchUpdates({
+            tableView.reloadSections([sectionToReloadIndex], with: .automatic)
+        }, completion: nil)
+    }
+
     //MARK: UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +110,7 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
             case .gifURL:
                 let shouldShowWarning = lastValidationErrors.contains(.gifNotProvided)
                 let cell: FormTableViewCell<GIFInputView> = tableView.dequeueReusableCell(indexPath: indexPath)
-                cell.configureFor(vm: FormTableViewCell<GIFInputView>.VM(inputVM: GIFInputView.VM(id: nil, url: nil), showsWarning: shouldShowWarning))
+                cell.configureFor(vm: FormTableViewCell<GIFInputView>.VM(inputVM: GIFInputView.VM(id: formValidator.form.gifID, url: formValidator.form.gifURL), showsWarning: shouldShowWarning))
                 cell.formInputView.delegate = self
                 return cell
             case .title:
@@ -149,7 +158,7 @@ extension GIFCreateViewController {
     }
 }
 
-extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, TagsInputViewDelegate {
+extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, TagsInputViewDelegate, GIFSearchDelegate {
     
     func didModifyText(text: String, textInputView: TextInputView) {
         guard let textInput = TextInputTags(rawValue: textInputView.tag) else { return }
@@ -165,27 +174,25 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
         if case .error(let errors) = self.formValidator.validateForm() {
             lastValidationErrors = errors
         }
-        guard let sectionToReloadIndex = formValidator.requiredSections.index(of: sectionToReload) else {
-            return
-        }
-        tableView.performBatchUpdates({
-            tableView.reloadSections([sectionToReloadIndex], with: .automatic)
-        }, completion: nil)
+        reloadSection(sectionToReload: sectionToReload)
     }
 
     func didAddTag(newTag: String, tagsInputView: TagsInputView) {
         let cleanTag = newTag.trimmingCharacters(in: [" "])
         guard !cleanTag.isEmpty else { return }
         formValidator.form.tags.append(cleanTag)
-        guard let sectionToReloadIndex = formValidator.requiredSections.index(of: .tags) else {
-            return
-        }
-        tableView.performBatchUpdates({
-            tableView.reloadSections([sectionToReloadIndex], with: .automatic)
-        }, completion: nil)
+        reloadSection(sectionToReload: .tags)
+    }
+
+    func didSelectGIF(id: String, url: URL) {
+        formValidator.form.gifURL = url
+        formValidator.form.gifID = id
+        reloadSection(sectionToReload: .gifURL)
     }
 
     func didTapGIFInputView(_ inputView: GIFInputView) {
-
+        let searchVC = GIFSearchViewController()
+        searchVC.delegate = self
+        show(searchVC, sender: nil)
     }
 }

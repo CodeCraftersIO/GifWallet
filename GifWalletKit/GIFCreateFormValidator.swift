@@ -23,6 +23,7 @@ public final class GIFCreateFormValidator {
         public var title: String?
         public var subtitle: String?
         public var gifURL: URL?
+        public var gifID: String?
         public var tags: [String] = []
         
         init() { }
@@ -66,7 +67,7 @@ public final class GIFCreateFormValidator {
             errors.insert(.subtitleNotProvided)
         }
         
-        if form.gifURL == nil {
+        if form.gifURL == nil || form.gifID == nil {
             errors.insert(.gifNotProvided)
         }
         
