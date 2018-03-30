@@ -10,6 +10,12 @@
 		0EDB97AAE181ABCA141291DB /* Pods_GifWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A6F727CA56BBC6B0F2BC71 /* Pods_GifWallet.framework */; };
 		674E133C218CD94E009F84CD /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E133B218CD94E009F84CD /* SaveButton.swift */; };
 		674E133E218CD9AD009F84CD /* GIFCreateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E133D218CD9AD009F84CD /* GIFCreateViewControllerTests.swift */; };
+		674E1341218CE1E7009F84CD /* UITableView+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E133F218CE1E7009F84CD /* UITableView+Wallet.swift */; };
+		674E1342218CE1E7009F84CD /* UITextField+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1340218CE1E7009F84CD /* UITextField+Wallet.swift */; };
+		674E1346218CE208009F84CD /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1344218CE208009F84CD /* FormTableViewCell.swift */; };
+		674E134B218CE234009F84CD /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1348218CE234009F84CD /* TextInputView.swift */; };
+		674E134C218CE234009F84CD /* GIFInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1349218CE234009F84CD /* GIFInputView.swift */; };
+		674E134D218CE234009F84CD /* TagInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E134A218CE234009F84CD /* TagInputView.swift */; };
 		96BD2327B9BF84651CC63C62 /* Pods_GifWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */; };
 		ED143920CEA670D73CA8E19F /* Pods_GifWallet_GifWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD12FD342277989B1726DD3 /* Pods_GifWallet_GifWalletTests.framework */; };
 		F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */; };
@@ -95,6 +101,12 @@
 		52A6F727CA56BBC6B0F2BC71 /* Pods_GifWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		674E133B218CD94E009F84CD /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		674E133D218CD9AD009F84CD /* GIFCreateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFCreateViewControllerTests.swift; sourceTree = "<group>"; };
+		674E133F218CE1E7009F84CD /* UITableView+Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Wallet.swift"; sourceTree = "<group>"; };
+		674E1340218CE1E7009F84CD /* UITextField+Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Wallet.swift"; sourceTree = "<group>"; };
+		674E1344218CE208009F84CD /* FormTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
+		674E1348218CE234009F84CD /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		674E1349218CE234009F84CD /* GIFInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFInputView.swift; sourceTree = "<group>"; };
+		674E134A218CE234009F84CD /* TagInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagInputView.swift; sourceTree = "<group>"; };
 		7F0484C73C76BA7AA7F4CA35 /* Pods-GifWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		832E7926BFBF2E17321EE417 /* Pods-GifWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.release.xcconfig"; sourceTree = "<group>"; };
 		BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +197,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		674E1347218CE217009F84CD /* InputViews */ = {
+			isa = PBXGroup;
+			children = (
+				674E1349218CE234009F84CD /* GIFInputView.swift */,
+				674E134A218CE234009F84CD /* TagInputView.swift */,
+				674E1348218CE234009F84CD /* TextInputView.swift */,
+			);
+			path = InputViews;
+			sourceTree = "<group>";
+		};
 		DD0F61E484A967F269BCA9C1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +234,8 @@
 		F5C7BEA5218B2AA10049C729 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				674E133F218CE1E7009F84CD /* UITableView+Wallet.swift */,
+				674E1340218CE1E7009F84CD /* UITextField+Wallet.swift */,
 				F5C7BED7218B6B7E0049C729 /* UICollectionView+Wallet.swift */,
 				F5C7BEC5218B4D110049C729 /* UIImageView+Extensions.swift */,
 				F5C7BEB3218B381C0049C729 /* UILabel+Wallet.swift */,
@@ -259,6 +283,8 @@
 		F5C7BEC7218B4EBC0049C729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				674E1347218CE217009F84CD /* InputViews */,
+				674E1344218CE208009F84CD /* FormTableViewCell.swift */,
 				F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */,
 				F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */,
 				674E133B218CD94E009F84CD /* SaveButton.swift */,
@@ -657,18 +683,24 @@
 				F5C7BEAF218B35000049C729 /* UIView+Extension.swift in Sources */,
 				F5C7BEB1218B35880049C729 /* ViewModelConfigurable.swift in Sources */,
 				F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */,
+				674E1341218CE1E7009F84CD /* UITableView+Wallet.swift in Sources */,
 				F5C7BED8218B6B7E0049C729 /* UICollectionView+Wallet.swift in Sources */,
+				674E134C218CE234009F84CD /* GIFInputView.swift in Sources */,
 				F5C7BEAA218B30BD0049C729 /* MockLoader.swift in Sources */,
 				F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */,
 				F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */,
+				674E134B218CE234009F84CD /* TextInputView.swift in Sources */,
 				F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */,
 				F5C7BED3218B67790049C729 /* ListState.swift in Sources */,
+				674E1342218CE1E7009F84CD /* UITextField+Wallet.swift in Sources */,
 				F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */,
 				F5C7BEC6218B4D110049C729 /* UIImageView+Extensions.swift in Sources */,
 				F5C7BEB6218B44A00049C729 /* GIFWalletViewController.swift in Sources */,
+				674E1346218CE208009F84CD /* FormTableViewCell.swift in Sources */,
 				F5C7BEAD218B30C50049C729 /* GIFDetailsPresenter.swift in Sources */,
 				F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */,
 				F5C7BEB4218B381C0049C729 /* UILabel+Wallet.swift in Sources */,
+				674E134D218CE234009F84CD /* TagInputView.swift in Sources */,
 				F5C7BEC9218B4ECA0049C729 /* GIFCollectionViewCell.swift in Sources */,
 				F5C7BED4218B67790049C729 /* CollectionViewStatefulDataSource.swift in Sources */,
 				F5C7BEB8218B45240049C729 /* GIFCreateViewController.swift in Sources */,
