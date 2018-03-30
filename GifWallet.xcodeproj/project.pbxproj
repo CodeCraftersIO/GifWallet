@@ -16,6 +16,8 @@
 		674E134B218CE234009F84CD /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1348218CE234009F84CD /* TextInputView.swift */; };
 		674E134C218CE234009F84CD /* GIFInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1349218CE234009F84CD /* GIFInputView.swift */; };
 		674E134D218CE234009F84CD /* TagInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E134A218CE234009F84CD /* TagInputView.swift */; };
+		674E134F218CE448009F84CD /* GIFCreateFormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E134E218CE448009F84CD /* GIFCreateFormValidator.swift */; };
+		674E1351218CE45A009F84CD /* GIFCreateFormValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E1350218CE45A009F84CD /* GIFCreateFormValidatorTests.swift */; };
 		96BD2327B9BF84651CC63C62 /* Pods_GifWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */; };
 		ED143920CEA670D73CA8E19F /* Pods_GifWallet_GifWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD12FD342277989B1726DD3 /* Pods_GifWallet_GifWalletTests.framework */; };
 		F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */; };
@@ -107,6 +109,8 @@
 		674E1348218CE234009F84CD /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		674E1349218CE234009F84CD /* GIFInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFInputView.swift; sourceTree = "<group>"; };
 		674E134A218CE234009F84CD /* TagInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagInputView.swift; sourceTree = "<group>"; };
+		674E134E218CE448009F84CD /* GIFCreateFormValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFCreateFormValidator.swift; sourceTree = "<group>"; };
+		674E1350218CE45A009F84CD /* GIFCreateFormValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFCreateFormValidatorTests.swift; sourceTree = "<group>"; };
 		7F0484C73C76BA7AA7F4CA35 /* Pods-GifWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		832E7926BFBF2E17321EE417 /* Pods-GifWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.release.xcconfig"; sourceTree = "<group>"; };
 		BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +361,7 @@
 		F5D1D47320499E2F0012E800 /* GifWalletKit */ = {
 			isa = PBXGroup;
 			children = (
+				674E134E218CE448009F84CD /* GIFCreateFormValidator.swift */,
 				F5D1D47420499E2F0012E800 /* GifWalletKit.h */,
 				F5D1D47520499E2F0012E800 /* Info.plist */,
 				F5D1D49020499ED00012E800 /* APIClient.swift */,
@@ -367,6 +372,7 @@
 		F5D1D48020499E300012E800 /* GifWalletKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				674E1350218CE45A009F84CD /* GIFCreateFormValidatorTests.swift */,
 				F5D1D48120499E300012E800 /* GifWalletKitTests.swift */,
 				F5D1D48320499E300012E800 /* Info.plist */,
 			);
@@ -723,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5D1D49120499ED00012E800 /* APIClient.swift in Sources */,
+				674E134F218CE448009F84CD /* GIFCreateFormValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +738,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5D1D48220499E300012E800 /* GifWalletKitTests.swift in Sources */,
+				674E1351218CE45A009F84CD /* GIFCreateFormValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
