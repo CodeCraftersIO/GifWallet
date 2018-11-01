@@ -16,8 +16,8 @@ class AutoLayoutTestsViewController: UIViewController {
         view.addSubview(redView)
 
         NSLayoutConstraint.activate([
-            redView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            redView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            redView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            redView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             gradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             gradientView.topAnchor.constraint(equalTo: self.view.topAnchor),
             gradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
