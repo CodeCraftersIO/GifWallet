@@ -5,13 +5,13 @@
 import UIKit
 import SDWebImage
 
-class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
+class GIFWalletViewController: UIViewController {
 
     var presenter: GIFWalletPresenterType = GIFWalletViewController.MockDataPresenter()
 
-    private var collectionView: UICollectionView!
-    private var data: [GIFCollectionViewCell.VM]?
-    
+    var collectionView: UICollectionView!
+    var dataSource: CollectionViewStatefulDataSource<GIFCollectionViewCell>!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -27,31 +27,26 @@ class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
         self.present(createVC, animated: true, completion: nil)
     }
     
-    private func fetchData() {
-        self.data = presenter.fetchData()
-    }
-    
     private func setupCollectionView() {
         let collectionViewLayout = ColumnFlowLayout()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         view.addSubview(collectionView)
         collectionView.pinToSuperview()
         collectionView.backgroundColor = .white
-        collectionView.dataSource = self
-        
-        collectionView.register(GIFCollectionViewCell.self, forCellWithReuseIdentifier: "GIFCollectionViewCell")
+        dataSource = CollectionViewStatefulDataSource<GIFCollectionViewCell>(
+            state: .loading,
+            collectionView: collectionView
+        )
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data!.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GIFCollectionViewCell", for: indexPath) as? GIFCollectionViewCell else {
-            fatalError()
+    private func fetchData() {
+        dataSource.state = .loading
+        self.presenter.fetchData { (data, error) in
+            guard error == nil, let data = data else {
+                self.dataSource.state = .failure(error: error!)
+                return
+            }
+            self.dataSource.state = .loaded(data: data)
         }
-        cell.configureFor(vm: data![indexPath.item])
-        return cell
     }
-
 }

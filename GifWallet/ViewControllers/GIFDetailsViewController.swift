@@ -203,6 +203,6 @@ extension GIFDetailsViewController: ViewModelConfigurable {
             aspectRatioConstraint.priority = .defaultHigh
             aspectRatioConstraint.isActive = true
         }
-        self.tagView.addTags(Array(vm.tags))
+        self.tagView.addTags(Array(vm.tags).sorted())
     }
 }

@@ -8,7 +8,7 @@ import XCTest
 
 class GIFDetailViewControllerTests: SnapshotTest {
 
-    func testGIFWalletViewController() {
+    func testGIFDetailsViewController() {
         let vc = GIFDetailsViewController(gifID: "NK1")
         vc.presenter = {
             let presenter = GIFDetailsViewController.MockDataPresenter()
