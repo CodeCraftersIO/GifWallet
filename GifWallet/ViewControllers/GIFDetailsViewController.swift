@@ -13,7 +13,7 @@ class GIFDetailsViewController: UIViewController {
 
     private var vm: VM?
 
-    private let presenter = Presenter()
+    var presenter: GIFDetailPresenterType = GIFDetailsViewController.MockDataPresenter()
 
     private var activityView: UIActivityIndicatorView!
 
@@ -21,6 +21,7 @@ class GIFDetailsViewController: UIViewController {
         let imageView = FLAnimatedImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
 
@@ -124,11 +125,15 @@ class GIFDetailsViewController: UIViewController {
         detailsStackView.addArrangedSubview(bottomSpacingView)
         containerStackView.addArrangedSubview(detailsStackView)
 
+        let imageDefaultAspectRatio = self.imageView.widthAnchor.constraint(equalTo: self.imageView.heightAnchor, multiplier: 1)
+        imageDefaultAspectRatio.priority = .defaultLow
+
         NSLayoutConstraint.activate([
+            imageDefaultAspectRatio,
             topSpacingView.heightAnchor.constraint(equalTo: bottomSpacingView.heightAnchor),
             containerStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             ])
-
+        
         portraitConstraints = [
             topSpacingView.heightAnchor.constraint(lessThanOrEqualToConstant: 0),
         ]
@@ -162,7 +167,7 @@ class GIFDetailsViewController: UIViewController {
 
     private func fetchGIFDetails() {
         activityView.startAnimating()
-        self.presenter.fetchMockGif(gifID: self.gifID) { [weak self] (vm) in
+        self.presenter.fetchGifDetails(gifID: self.gifID) { [weak self] (vm) in
             guard let `self` = self else { return }
             guard let vm = vm else {
                 self.navigationController?.popViewController(animated: true)
