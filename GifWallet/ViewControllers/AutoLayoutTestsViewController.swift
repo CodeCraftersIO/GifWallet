@@ -8,6 +8,21 @@ import UIKit
 class AutoLayoutTestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gradientView = GradientView.sampleGradient()
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gradientView)
+        
+        let redView = RedView(frame: .zero)
+        view.addSubview(redView)
+
+        NSLayoutConstraint.activate([
+            redView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            redView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            gradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            gradientView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            ])
     }
 }
 
