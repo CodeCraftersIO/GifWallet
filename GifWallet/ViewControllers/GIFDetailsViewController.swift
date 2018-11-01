@@ -11,7 +11,7 @@ class GIFDetailsViewController: UIViewController {
 
     let gifID: String
 
-    private let presenter = Presenter()
+    var presenter: GIFDetailPresenterType = GIFDetailsViewController.MockDataPresenter()
 
     private var activityView: UIActivityIndicatorView!
 
@@ -144,7 +144,7 @@ class GIFDetailsViewController: UIViewController {
 
     private func fetchGIFDetails() {
         activityView.startAnimating()
-        self.presenter.fetchMockGif(gifID: self.gifID) { [weak self] (vm) in
+        self.presenter.fetchGifDetails(gifID: self.gifID) { [weak self] (vm) in
             guard let `self` = self else { return }
             guard let vm = vm else {
                 self.navigationController?.popViewController(animated: true)
