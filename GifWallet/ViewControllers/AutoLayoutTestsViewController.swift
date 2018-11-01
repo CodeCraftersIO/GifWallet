@@ -24,6 +24,25 @@ class AutoLayoutTestsViewController: UIViewController {
             gradientView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             ])
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        print("Horiziontal: \(self.traitCollection.horizontalSizeClass)")
+        print("Vertical: \(self.traitCollection.verticalSizeClass)")
+    }
+}
+
+extension UIUserInterfaceSizeClass: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .compact:
+            return "compact"
+        case .regular:
+            return "regular"
+        case .unspecified:
+            return "unspecified"
+        }
+    }
 }
 
 class RedView: UIView {
