@@ -7,6 +7,12 @@ import Foundation
 
 enum MockLoader {
 
+    static func mockCellVM() -> [GIFCollectionViewCell.VM] {
+        return mockedDetailGifs.map({ (gifDetails) in
+            return GIFCollectionViewCell.VM(id: gifDetails.gifID, title: gifDetails.title, url: gifDetails.url)
+        })
+    }
+
     static func mockDetailGif(gifID: String) -> GIFDetailsViewController.VM? {
         return mockedDetailGifs.first(where: { return $0.gifID == gifID })
     }
