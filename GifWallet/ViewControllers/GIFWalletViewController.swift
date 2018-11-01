@@ -10,7 +10,6 @@ class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
     var presenter: GIFWalletPresenterType = GIFWalletViewController.MockDataPresenter()
 
     private var collectionView: UICollectionView!
-    private var collectionViewLayout: UICollectionViewFlowLayout!
     private var data: [GIFCollectionViewCell.VM]?
     
     override func viewDidLoad() {
@@ -33,9 +32,7 @@ class GIFWalletViewController: UIViewController, UICollectionViewDataSource {
     }
     
     private func setupCollectionView() {
-        collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.minimumLineSpacing = 0
-        collectionViewLayout.minimumInteritemSpacing = 0
+        let collectionViewLayout = ColumnFlowLayout()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         view.addSubview(collectionView)
         collectionView.pinToSuperview()

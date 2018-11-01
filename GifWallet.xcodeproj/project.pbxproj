@@ -25,6 +25,7 @@
 		F5C7BEC6218B4D110049C729 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEC5218B4D110049C729 /* UIImageView+Extensions.swift */; };
 		F5C7BEC9218B4ECA0049C729 /* GIFCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */; };
 		F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */; };
+		F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */; };
 		F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D1D43D20499B880012E800 /* AppDelegate.swift */; };
 		F5D1D44720499B880012E800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44620499B880012E800 /* Assets.xcassets */; };
 		F5D1D44A20499B880012E800 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44820499B880012E800 /* LaunchScreen.storyboard */; };
@@ -106,6 +107,7 @@
 		F5C7BEC5218B4D110049C729 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFWalletPresenter.swift; sourceTree = "<group>"; };
+		F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		F5D1D43A20499B880012E800 /* GifWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D1D43D20499B880012E800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5D1D44620499B880012E800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		F5C7BEC7218B4EBC0049C729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */,
 				F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -631,6 +634,7 @@
 				F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */,
 				F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */,
 				F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */,
+				F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */,
 				F5C7BEC6218B4D110049C729 /* UIImageView+Extensions.swift in Sources */,
 				F5C7BEB6218B44A00049C729 /* GIFWalletViewController.swift in Sources */,
 				F5C7BEAD218B30C50049C729 /* GIFDetailsPresenter.swift in Sources */,
