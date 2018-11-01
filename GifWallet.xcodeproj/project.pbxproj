@@ -26,6 +26,7 @@
 		F5C7BEC9218B4ECA0049C729 /* GIFCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */; };
 		F5C7BECB218B50210049C729 /* GIFWalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */; };
 		F5C7BECD218B51E40049C729 /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */; };
+		F5C7BECF218B54360049C729 /* GIFWalletViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */; };
 		F5D1D43E20499B880012E800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D1D43D20499B880012E800 /* AppDelegate.swift */; };
 		F5D1D44720499B880012E800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44620499B880012E800 /* Assets.xcassets */; };
 		F5D1D44A20499B880012E800 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D1D44820499B880012E800 /* LaunchScreen.storyboard */; };
@@ -108,6 +109,7 @@
 		F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFWalletPresenter.swift; sourceTree = "<group>"; };
 		F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
+		F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFWalletViewControllerTests.swift; sourceTree = "<group>"; };
 		F5D1D43A20499B880012E800 /* GifWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D1D43D20499B880012E800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5D1D44620499B880012E800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C7BEC1218B4C4D0049C729 /* GIFDetailViewControllerTests.swift */,
+				F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */,
 			);
 			path = Suite;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C7BEC3218B4C4E0049C729 /* GIFDetailViewControllerTests.swift in Sources */,
+				F5C7BECF218B54360049C729 /* GIFWalletViewControllerTests.swift in Sources */,
 				F5C7BEC4218B4C4E0049C729 /* SnapshotTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
