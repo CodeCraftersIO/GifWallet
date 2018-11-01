@@ -10,6 +10,11 @@ class GIFWalletViewControllerTests: SnapshotTest {
     
     func testGIFWalletViewController() {
         let vc = GIFWalletViewController()
+        vc.presenter = {
+            let presenter = GIFWalletViewController.MockDataPresenter()
+            presenter.delaySeconds = 0
+            return presenter
+        }()
         let navigationController = UINavigationController(rootViewController: vc)
         waitABitAndVerify(viewController: navigationController)
     }
