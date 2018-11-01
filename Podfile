@@ -4,7 +4,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'GifWallet' do
-  pod 'SDWebImage'
+  pod 'SDWebImage/GIF'
+  pod 'TagListView', '~> 1.3.2'
 end
 
 target 'GifWalletKit' do
