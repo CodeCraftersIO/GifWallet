@@ -8,12 +8,6 @@ import UIKit
 class AutoLayoutTestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let redView = RedView(frame: .zero)
-        view.addSubview(redView)
-
-        // Specify origin
-        redView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        redView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 }
 
@@ -38,4 +32,63 @@ class RedView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+}
+
+import UIKit
+
+class GradientView: UIView {
+    
+    class func sampleGradient() -> GradientView {
+        let gradientView = GradientView(frame: .zero)
+        gradientView.startPoint = 0.5
+        gradientView.topColor = UIColor(rgb: 0xEF4DB6)
+        gradientView.bottomColor = UIColor(rgb: 0xC643FC)
+        return gradientView
+    }
+    
+    public var startPoint: Float = 0 {
+        didSet {
+            updateGradientColors()
+        }
+    }
+    
+    public var topColor: UIColor = .white {
+        didSet {
+            updateGradientColors()
+        }
+    }
+    
+    public var bottomColor: UIColor = .black {
+        didSet {
+            updateGradientColors()
+        }
+    }
+    
+    private let gradientLayer = CAGradientLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        sharedInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        sharedInit()
+    }
+    
+    private func sharedInit() {
+        layer.addSublayer(gradientLayer)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = bounds
+        updateGradientColors()
+    }
+    
+    private func updateGradientColors() {
+        gradientLayer.colors = [topColor.cgColor,  bottomColor.cgColor]
+        gradientLayer.locations = [0, NSNumber(value: startPoint)]
+    }
+    
 }
