@@ -19,6 +19,7 @@ class GIFDetailsViewController: UIViewController {
         let imageView = FLAnimatedImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
 
@@ -106,11 +107,15 @@ class GIFDetailsViewController: UIViewController {
         detailsStackView.addArrangedSubview(bottomSpacingView)
         containerStackView.addArrangedSubview(detailsStackView)
 
+        let imageDefaultAspectRatio = self.imageView.widthAnchor.constraint(equalTo: self.imageView.heightAnchor, multiplier: 1)
+        imageDefaultAspectRatio.priority = .defaultLow
+
         NSLayoutConstraint.activate([
+            imageDefaultAspectRatio,
             topSpacingView.heightAnchor.constraint(equalTo: bottomSpacingView.heightAnchor),
             containerStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             ])
-
+        
         portraitConstraints = [
             topSpacingView.heightAnchor.constraint(lessThanOrEqualToConstant: 0),
         ]

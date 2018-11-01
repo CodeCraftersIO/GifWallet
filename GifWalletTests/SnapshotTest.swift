@@ -37,18 +37,18 @@ class SnapshotTest: FBSnapshotTestCase {
     }
     
     /// Add the view controller on the window and wait infinitly
-    func debugViewController(_ viewController: UIViewController) {
+    func debug(viewController: UIViewController) {
         rootViewController = viewController
         let exp = expectation(description: "No expectation")
         let _ = waiter.wait(for: [exp], timeout: 1000)
         waiter = XCTWaiter()
     }
     
-    func debugView(_ view: UIView) {
+    func debug(view: UIView) {
         let vc = UIViewController()
         vc.view.backgroundColor = .white
         vc.view.addSubview(view)
-        debugViewController(vc)
+        debug(viewController: vc)
     }
     
     /// Presents the VC using a fresh rootVC in the host's main window.
