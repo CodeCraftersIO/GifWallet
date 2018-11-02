@@ -15,6 +15,8 @@ class GIFCreateViewController: UIViewController {
             return navController
         }
     }
+    
+    private let tableView = UITableView(frame: .zero, style: .grouped)
 
     private init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,10 +28,23 @@ class GIFCreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
+        assert(self.navigationController != nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(dismissViewController))
+        setup()
     }
     
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Private
+    
+    private func setup() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.pinToSuperviewSafeLayoutEdges()
     }
 }
