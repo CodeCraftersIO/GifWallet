@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0EDB97AAE181ABCA141291DB /* Pods_GifWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A6F727CA56BBC6B0F2BC71 /* Pods_GifWallet.framework */; };
+		674E133C218CD94E009F84CD /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E133B218CD94E009F84CD /* SaveButton.swift */; };
+		674E133E218CD9AD009F84CD /* GIFCreateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E133D218CD9AD009F84CD /* GIFCreateViewControllerTests.swift */; };
 		96BD2327B9BF84651CC63C62 /* Pods_GifWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */; };
 		ED143920CEA670D73CA8E19F /* Pods_GifWallet_GifWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD12FD342277989B1726DD3 /* Pods_GifWallet_GifWalletTests.framework */; };
 		F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */; };
@@ -91,6 +93,8 @@
 		1C57C1C750AA91C3F11BA5E4 /* Pods-GifWalletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWalletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifWalletKit/Pods-GifWalletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		2AECB1B364602EE2C6751957 /* Pods-GifWalletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWalletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifWalletKit/Pods-GifWalletKit.release.xcconfig"; sourceTree = "<group>"; };
 		52A6F727CA56BBC6B0F2BC71 /* Pods_GifWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		674E133B218CD94E009F84CD /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		674E133D218CD9AD009F84CD /* GIFCreateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFCreateViewControllerTests.swift; sourceTree = "<group>"; };
 		7F0484C73C76BA7AA7F4CA35 /* Pods-GifWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		832E7926BFBF2E17321EE417 /* Pods-GifWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet/Pods-GifWallet.release.xcconfig"; sourceTree = "<group>"; };
 		BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +251,7 @@
 			children = (
 				F5C7BEC1218B4C4D0049C729 /* GIFDetailViewControllerTests.swift */,
 				F5C7BECE218B54360049C729 /* GIFWalletViewControllerTests.swift */,
+				674E133D218CD9AD009F84CD /* GIFCreateViewControllerTests.swift */,
 			);
 			path = Suite;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			children = (
 				F5C7BECC218B51E40049C729 /* ColumnFlowLayout.swift */,
 				F5C7BEC8218B4ECA0049C729 /* GIFCollectionViewCell.swift */,
+				674E133B218CD94E009F84CD /* SaveButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				674E133C218CD94E009F84CD /* SaveButton.swift in Sources */,
 				F5C7BEAF218B35000049C729 /* UIView+Extension.swift in Sources */,
 				F5C7BEB1218B35880049C729 /* ViewModelConfigurable.swift in Sources */,
 				F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */,
@@ -672,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				674E133E218CD9AD009F84CD /* GIFCreateViewControllerTests.swift in Sources */,
 				F5C7BEC3218B4C4E0049C729 /* GIFDetailViewControllerTests.swift in Sources */,
 				F5C7BECF218B54360049C729 /* GIFWalletViewControllerTests.swift in Sources */,
 				F5C7BEC4218B4C4E0049C729 /* SnapshotTest.swift in Sources */,

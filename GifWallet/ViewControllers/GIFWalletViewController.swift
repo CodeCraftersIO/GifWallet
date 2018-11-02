@@ -24,9 +24,7 @@ class GIFWalletViewController: UIViewController {
     
     @objc func addNewGif() {
         let createVC = GIFCreateViewController.Factory.viewController()
-        let navController = UINavigationController(rootViewController: createVC)
-        navController.modalPresentationStyle = .formSheet
-        self.present(navController, animated: true, completion: nil)
+        self.present(createVC, animated: true, completion: nil)
     }
     
     private func setupCollectionView() {

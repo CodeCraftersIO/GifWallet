@@ -5,7 +5,7 @@
 
 import UIKit
 
-class GIFCreateViewController: UIViewController {
+class GIFCreateViewController: UIViewController, UITableViewDataSource {
     
     enum Factory {
         static func viewController() -> UIViewController {
@@ -16,7 +16,8 @@ class GIFCreateViewController: UIViewController {
         }
     }
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let saveButton = SaveButton()
 
     private init() {
         super.init(nibName: nil, bundle: nil)
@@ -31,20 +32,63 @@ class GIFCreateViewController: UIViewController {
         assert(self.navigationController != nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(dismissViewController))
         setup()
+        layout()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.contentInset = UIEdgeInsets(
+            top: tableView.contentInset.top + 0,
+            left: tableView.contentInset.left + 0,
+            bottom: tableView.contentInset.bottom + saveButton.frame.size.height,
+            right: tableView.contentInset.right + 0
+        )
+    }
+
     
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func onSave() {
+        
     }
     
     //MARK: Private
     
     private func setup() {
         setupTableView()
+        saveButton.addTarget(self, action: #selector(onSave), for: .touchDown)
     }
     
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.pinToSuperviewSafeLayoutEdges()
     }
+    
+    private func layout() {
+        view.addSubview(tableView)
+        tableView.pinToSuperviewSafeLayoutEdges()
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(saveButton)
+        NSLayoutConstraint.activate([
+            saveButton.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            saveButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            ])
+    }
+    
+    //MARK: UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseID")
+        cell?.textLabel?.text = "HelloWorld"
+        return cell!
+    }
+
 }
