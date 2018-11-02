@@ -8,6 +8,8 @@ import XCTest
 
 class GIFCreateViewControllerTests: SnapshotTest {
     func testBasicLayout() {
+        recordMode = true
         let vc = GIFCreateViewController.Factory.viewController()
+        waitABitAndVerify(viewController: vc)
     }
 }
