@@ -54,6 +54,16 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
             ])
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: saveButton.frame.size.height,
+            right: 0
+        )
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
