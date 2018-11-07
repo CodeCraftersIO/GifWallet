@@ -13,6 +13,7 @@ class GIFCreateViewControllerTests: SnapshotTest {
 
     func testBasicLayout() {
         let vc = GIFCreateViewController.Factory.viewController()
-        debug(viewController: vc)
+        vc.view.backgroundColor = .white
+        waitABitAndVerify(viewController: vc)
     }
 }

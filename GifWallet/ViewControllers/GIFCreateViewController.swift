@@ -15,9 +15,11 @@ class GIFCreateViewController: UIViewController {
             return navController
         }
     }
+    private let saveButton = SaveButton()
 
     private init() {
         super.init(nibName: nil, bundle: nil)
+        layout()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,5 +33,14 @@ class GIFCreateViewController: UIViewController {
     
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func layout() {
+        view.addAutolayoutView(saveButton)
+        NSLayoutConstraint.activate([
+            saveButton.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            saveButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            ])
     }
 }
