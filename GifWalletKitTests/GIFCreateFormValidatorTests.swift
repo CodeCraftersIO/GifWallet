@@ -7,28 +7,61 @@
 //
 
 import XCTest
+import GifWalletKit
 
-class GIFCreateFormValidatorTests: GIFWalletSnapshotTest {
-
+class GIFFormValidatorTests: XCTestCase {
+    
+    var formValidator: GIFCreateFormValidator!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        super.setUp()
+        formValidator = GIFCreateFormValidator()
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testValidateInvalidResults() {
+        
+        let title: String? = nil
+        let subtitle = ""
+        let gifURL = URL(string: "invalid URL")
+        let tags = [String]()
+        
+        formValidator.form.title = title
+        formValidator.form.subtitle = subtitle
+        formValidator.form.gifURL = gifURL
+        formValidator.form.tags = tags
+        
+        let result = formValidator.validateForm()
+        
+        switch result {
+        case .ok:
+            XCTFail("Result should be an error")
+        case .error(let errors):
+            XCTAssert(errors.count == 4, "Validation must contain exactly 4 errors")
+            XCTAssert(errors.contains(.titleNotProvided), "Validation result must contain error: title not provided")
+            XCTAssert(errors.contains(.subtitleNotProvided), "Validation result must contain error: subtitle not provided")
+            XCTAssert(errors.contains(.gifNotProvided), "Validation result must contain error: gif not provided")
+            XCTAssert(errors.contains(.tagsNotProvided), "Validation result must contain error: tags not provided")
+        }
     }
-
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testValidateValidResults() {
+        
+        let title: String? = "A GIF Title"
+        let subtitle = "A GIF Subtitle"
+        let gifURL = URL(string: "https://media0.giphy.com/media/8752sSo2HbPqE7MN03/giphy.gif")
+        let tags = [ "funny" ]
+        
+        formValidator.form.title = title
+        formValidator.form.subtitle = subtitle
+        formValidator.form.gifURL = gifURL
+        formValidator.form.tags = tags
+        
+        switch formValidator.validateForm() {
+        case .ok:
+            break
+        default:
+            XCTFail()
+        }
     }
-
+    
 }
