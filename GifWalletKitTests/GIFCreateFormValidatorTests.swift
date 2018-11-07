@@ -64,4 +64,12 @@ class GIFFormValidatorTests: XCTestCase {
         }
     }
     
+    func testRequiredSections() {
+        XCTAssert(formValidator.requiredSections.count == 4)
+        XCTAssert(formValidator.requiredSections[0] == .gifURL)
+        XCTAssert(formValidator.requiredSections[1] == .title)
+        XCTAssert(formValidator.requiredSections[2] == .subtitle)
+        XCTAssert(formValidator.requiredSections[3] == .tags)
+    }
+    
 }
