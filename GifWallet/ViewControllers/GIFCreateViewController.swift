@@ -162,6 +162,9 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
             formValidator.form.subtitle = text
             sectionToReload = .subtitle
         }
+        if case .error(let errors) = self.formValidator.validateForm() {
+            lastValidationErrors = errors
+        }
         guard let sectionToReloadIndex = formValidator.requiredSections.index(of: sectionToReload) else {
             return
         }
