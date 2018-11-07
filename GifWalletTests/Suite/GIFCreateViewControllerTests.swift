@@ -11,9 +11,8 @@ import XCTest
 
 class GIFCreateViewControllerTests: SnapshotTest {
 
-    func testBasicLayout() {
+    func testGIFCreateViewController() {
         let vc = GIFCreateViewController.Factory.viewController()
-        vc.view.backgroundColor = .white
         waitABitAndVerify(viewController: vc)
     }
 }
