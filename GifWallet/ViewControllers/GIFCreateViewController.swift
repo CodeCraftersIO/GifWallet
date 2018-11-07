@@ -5,7 +5,7 @@
 
 import UIKit
 
-class GIFCreateViewController: UIViewController {
+class GIFCreateViewController: UIViewController, UITableViewDataSource {
     
     enum Factory {
         static func viewController() -> UIViewController {
@@ -15,11 +15,12 @@ class GIFCreateViewController: UIViewController {
             return navController
         }
     }
+    
+    private let tableView = UITableView(frame: .zero, style: .plain)
     private let saveButton = SaveButton()
 
     private init() {
         super.init(nibName: nil, bundle: nil)
-        layout()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +30,15 @@ class GIFCreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
+        setupTableView()
+        layout()
+    }
+    
+    private func setupTableView() {
+        view.addAutolayoutView(tableView)
+        tableView.pinToSuperview()
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ReuseID")
     }
     
     @objc func dismissViewController() {
@@ -42,5 +52,15 @@ class GIFCreateViewController: UIViewController {
             saveButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             saveButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             ])
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseID", for: indexPath)
+        cell.textLabel?.text = "Hello world"
+        return cell
     }
 }
