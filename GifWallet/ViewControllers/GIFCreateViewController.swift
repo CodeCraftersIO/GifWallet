@@ -32,6 +32,8 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
         setupTableView()
         layout()
+        
+        saveButton.addTarget(self, action: #selector(onSave), for: .touchDown)
     }
     
     private func setupTableView() {
@@ -72,5 +74,9 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseID", for: indexPath)
         cell.textLabel?.text = "Hello world"
         return cell
+    }
+    
+    @objc func onSave() {
+        
     }
 }
