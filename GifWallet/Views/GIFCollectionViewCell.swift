@@ -24,7 +24,7 @@ class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
 
     let imageView: UIImageView = {
         let imageView = FLAnimatedImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()

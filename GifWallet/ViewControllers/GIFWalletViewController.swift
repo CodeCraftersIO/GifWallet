@@ -41,7 +41,6 @@ class GIFWalletViewController: UIViewController {
             state: .loading, collectionView: collectionView
         )
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGif))
-        setupCollectionView()
         fetchData()
     }
     

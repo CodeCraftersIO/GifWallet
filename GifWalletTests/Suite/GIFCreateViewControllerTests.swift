@@ -12,6 +12,7 @@ import XCTest
 class GIFCreateViewControllerTests: SnapshotTest {
 
     func testGIFCreateViewController() {
+        recordMode = true
         let vc = GIFCreateViewController.Factory.viewController()
         waitABitAndVerify(viewController: vc)
     }
