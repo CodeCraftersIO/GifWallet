@@ -11,10 +11,13 @@ import Foundation
 public final class GIFCreateFormValidator {
     
     public init() {
-        
+        requiredSections = [
+            .gifURL,
+            .title,
+            .subtitle,
+            .tags
+        ]
     }
-    
-    public let form = Form()
     
     public class Form {
         public var title: String?
@@ -23,6 +26,16 @@ public final class GIFCreateFormValidator {
         public var tags: [String]?
         
         init() { }
+    }
+    
+    public let form = Form()
+    public let requiredSections: [Section]
+    
+    public enum Section {
+        case title
+        case subtitle
+        case gifURL
+        case tags
     }
     
     public enum ValidationResult {
