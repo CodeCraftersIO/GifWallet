@@ -196,7 +196,7 @@ extension GIFDetailsViewController: ViewModelConfigurable {
 
         self.titleLabel.text = vm.title
         self.subtitleLabel.text = vm.subtitle
-        self.imageView.sd_setImage(with: vm.url) { (image, _, _, _) in
+        self.imageView.setImageWithURL(vm.url) { (image, _) in
             guard let image = image else { return }
             let aspectRatio = image.size.width/image.size.height
             let aspectRatioConstraint = self.imageView.widthAnchor.constraint(equalTo: self.imageView.heightAnchor, multiplier: aspectRatio)

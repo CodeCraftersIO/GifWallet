@@ -7,7 +7,7 @@ import UIKit
 import SDWebImage
 
 class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
-    
+
     private enum Constants {
         static let margin: CGFloat = 3
         static let spacing: CGFloat = 8
@@ -21,14 +21,14 @@ class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
-    
+
     let imageView: UIImageView = {
         let imageView = FLAnimatedImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -39,7 +39,6 @@ class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
     }
     
     private func setup() {
-        
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -56,11 +55,10 @@ class GIFCollectionViewCell: UICollectionViewCell, ViewModelReusable {
         
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
     }
-    
+
     func configureFor(vm: GIFCollectionViewCell.VM) {
         titleLabel.text = vm.title
         imageView.setImageWithURL(vm.url)
-        accessibilityValue = vm.title
     }
 }
 
