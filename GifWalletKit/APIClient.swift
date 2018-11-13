@@ -9,6 +9,7 @@ public class APIClient {
     
     let environment: Environment
     let urlSession: URLSession
+    let jsonDecoder = JSONDecoder()
     
     public init(environment: Environment) {
         self.environment = environment
@@ -25,10 +26,16 @@ public class APIClient {
             return
         }
         
-        let task = urlSession.dataTask(with: urlRequest) { (data, _, error) in
+        let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
             guard error == nil else {
                 handler(nil, error)
                 return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 399) else {
+                    handler(nil, Error.httpError)
+                    return
             }
             
             guard let data = data else {
@@ -41,9 +48,19 @@ public class APIClient {
         task.resume()
     }
     
+    func parseResponse<T: Decodable>(data: Data) throws -> T {
+        do {
+            return try jsonDecoder.decode(T.self, from: data)
+        } catch {
+            throw Error.malformedJSONResponse
+        }
+    }
+    
     enum Error: Swift.Error {
         case malformedURL
         case malformedParameters
+        case malformedJSONResponse
+        case httpError
         case unknown
     }
 }

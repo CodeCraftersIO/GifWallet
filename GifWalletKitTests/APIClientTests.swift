@@ -46,6 +46,12 @@ fileprivate enum HTTPBin {
             }
         }
     }
+    
+    fileprivate enum Responses {
+        struct IP: Decodable {
+            let origin: String
+        }
+    }
 }
 
 class HTTPBinAPITests: XCTestCase {
@@ -76,5 +82,22 @@ class APIClientTests: XCTestCase {
         
         waitForExpectations(timeout: 3)
     }
+    
+    
+    func testParseIPResponse() throws {
+        let json =
+            """
+{
+  "origin": "80.34.92.76"
+}
+"""
+                .data(using: .utf8)!
+        guard let response: HTTPBin.Responses.IP = try? apiClient.parseResponse(data: json) else {
+            XCTFail("Response threw error")
+            return
+        }
+        XCTAssert(response.origin == "80.34.92.76")
+    }
+
 
 }
