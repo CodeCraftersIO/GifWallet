@@ -61,11 +61,18 @@ class APIClientTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        apiClient = APIClient(environment: HTTPBinHosts.development)
+        apiClient = APIClient(environment: HTTPBinHosts.production)
     }
     
     func testGET() {
-        apiClient.performRequest(forEndpoint: HTTPBinEndpoints.ip)
+        let exp = expectation(description: "Fetch completes")
+        
+        apiClient.performRequest(forEndpoint: HTTPBinEndpoints.ip) { (data, error) in
+            XCTAssert(data != nil)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 3)
     }
 
 }
