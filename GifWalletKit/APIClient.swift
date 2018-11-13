@@ -3,6 +3,17 @@
 //  Copyright © 2018 Pierluigi Cifani. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
-
+public class APIClient {
+    
+    let environment: Environment
+    
+    public init(environment: Environment) {
+        self.environment = environment
+    }
+    
+    public func performRequest(forEndpoint endpoint: Endpoint) {
+        
+    }
+}
