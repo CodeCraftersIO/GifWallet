@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Deferred
 
 public class GiphyAPIClient: APIClient {
     public init() {
@@ -14,18 +15,14 @@ public class GiphyAPIClient: APIClient {
         super.init(environment: Giphy.Hosts.production, signature: signature)
     }
     
-    public func fetchTrending(handler: @escaping (Giphy.Responses.Page?, Swift.Error?) -> Void) {
+    public func fetchTrending() -> Task<Giphy.Responses.Page> {
         let request: Request<Giphy.Responses.Page> = requestForEndpoint(Giphy.API.trending)
-        self.perform(request) { (response, error) in
-            handler(response, error)
-        }
+        return self.perform(request)
     }
     
-    public func searchGif(term: String, handler: @escaping (Giphy.Responses.Page?, Swift.Error?) -> Void) {
+    public func searchGif(term: String) -> Task<Giphy.Responses.Page> {
         let request: Request<Giphy.Responses.Page> = requestForEndpoint(Giphy.API.search(term))
-        self.perform(request) { (response, error) in
-            handler(response, error)
-        }
+        return self.perform(request)
     }
 }
 

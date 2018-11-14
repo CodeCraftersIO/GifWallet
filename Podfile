@@ -15,4 +15,6 @@ end
 
 target 'GifWalletKit' do
     pod 'BNRDeferred', '4.0.0-beta.2'
+    target 'GifWalletKitTests' do
+    end
 end

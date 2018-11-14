@@ -80,6 +80,8 @@ public class APIClient {
 
 }
 
+//MARK: URLSession
+
 public extension URLSession {
     func fetchData(with request: URLRequest) -> Task<Data> {
         let deferred = Deferred<TaskResult<Data>>()
@@ -105,6 +107,8 @@ public extension URLSession {
         return Task(deferred)
     }
 }
+
+//MARK: URLRequest
 
 public extension URLRequest {
     static func createURLRequest<T>(request: Request<T>) -> Task<URLRequest> {
