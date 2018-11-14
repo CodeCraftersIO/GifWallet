@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Deferred
 @testable import GifWalletKit
 
 class HTTPBinAPITests: XCTestCase {
@@ -27,22 +28,11 @@ class APIClientTests: XCTestCase {
         apiClient = HTTPBinAPIClient(environment: HTTPBin.Hosts.production)
     }
     
-    func testGET() {
-        let exp = expectation(description: "Fetch completes")
-        
-        apiClient.fetchIPAddress { (ip, error) in
-            guard let ip = ip else {
-                XCTFail()
-                exp.fulfill()
-                return
-            }
-            XCTAssert(ip.origin.count > 0)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 3)
+    func testGET() throws {
+        let task = apiClient.fetchIPAddress()
+        let response = try waitForTask(task)
+        XCTAssert(response.origin.count > 0)
     }
-    
     
     func testParseIPResponse() throws {
         let json =
@@ -52,12 +42,8 @@ class APIClientTests: XCTestCase {
 }
 """
                 .data(using: .utf8)!
-        guard let response: HTTPBin.Responses.IP = try? apiClient.parseResponse(data: json) else {
-            XCTFail("Response threw error")
-            return
-        }
+        let task: Task<HTTPBin.Responses.IP> = apiClient.parseResponse(data: json)
+        let response = try waitForTask(task)
         XCTAssert(response.origin == "80.34.92.76")
     }
-
-
 }
