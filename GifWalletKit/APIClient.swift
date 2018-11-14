@@ -16,34 +16,10 @@ public class APIClient {
         self.urlSession = URLSession(configuration: .default)
     }
     
-    public func performRequestAndParseResponse<T: Decodable>(forEndpoint endpoint: Endpoint, handler: @escaping (T?, Swift.Error?) -> Void) {
-        self.performRequest(forEndpoint: endpoint) { (data, error) in
-            guard error == nil else {
-                handler(nil, error!)
-                return
-            }
-            guard let data = data else {
-                handler(nil, Error.unknown)
-                return
-            }
-            
-            let response: T
-            do {
-                response = try self.parseResponse(data: data)
-            } catch let error {
-                handler(nil, error)
-                return
-            }
-            
-            handler(response, nil)
-        }
-    }
-    
-    public func performRequest(forEndpoint endpoint: Endpoint, handler: @escaping (Data?, Swift.Error?) -> ()) {
-        
+    public func perform<T: Decodable>(request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
         let urlRequest: URLRequest
         do {
-            urlRequest = try URLRequest(fromEndpoint: endpoint, andEnvironment: environment)
+            urlRequest = try URLRequest(fromRequest: request)
         } catch let error {
             handler(nil, error)
             return
@@ -66,7 +42,15 @@ public class APIClient {
                 return
             }
             
-            handler(data, nil)
+            let response: T
+            do {
+                response = try self.parseResponse(data: data)
+            } catch let error {
+                handler(nil, error)
+                return
+            }
+            
+            handler(response, nil)
         }
         task.resume()
     }
@@ -79,6 +63,13 @@ public class APIClient {
         }
     }
     
+    func requestForEndpoint<T>(_ endpoint: Endpoint) -> Request<T> {
+        return Request<T>(
+            endpoint: endpoint,
+            environment: environment
+        )
+    }
+    
     enum Error: Swift.Error {
         case malformedURL
         case malformedParameters
@@ -89,7 +80,9 @@ public class APIClient {
 }
 
 public extension URLRequest {
-    init(fromEndpoint endpoint: Endpoint, andEnvironment environment: Environment) throws {
+    init<T>(fromRequest request: Request<T>) throws {
+        let endpoint = request.endpoint
+        let environment = request.environment
         guard let url = URL(string: endpoint.path, relativeTo: environment.baseURL) else {
             throw APIClient.Error.malformedURL
         }
