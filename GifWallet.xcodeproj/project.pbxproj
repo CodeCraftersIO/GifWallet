@@ -231,6 +231,17 @@
 			path = InputViews;
 			sourceTree = "<group>";
 		};
+		676D1D62219C088F005A7D5D /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				F5D1D49020499ED00012E800 /* APIClient.swift */,
+				67C5C677219AAEA000E563ED /* Environment.swift */,
+				67C5C675219AAE7000E563ED /* Endpoint.swift */,
+				67C5C67E219BA45500E563ED /* Request.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
 		67C5C67B219B983B00E563ED /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,14 +412,11 @@
 		F5D1D47320499E2F0012E800 /* GifWalletKit */ = {
 			isa = PBXGroup;
 			children = (
+				676D1D62219C088F005A7D5D /* APIClient */,
 				67C5C685219BA58800E563ED /* Giphy */,
 				F5D1D47420499E2F0012E800 /* GifWalletKit.h */,
 				F5D1D47520499E2F0012E800 /* Info.plist */,
-				F5D1D49020499ED00012E800 /* APIClient.swift */,
 				674E137A21938933009F84CD /* GIFCreateFormValidator.swift */,
-				67C5C675219AAE7000E563ED /* Endpoint.swift */,
-				67C5C677219AAEA000E563ED /* Environment.swift */,
-				67C5C67E219BA45500E563ED /* Request.swift */,
 			);
 			path = GifWalletKit;
 			sourceTree = "<group>";
