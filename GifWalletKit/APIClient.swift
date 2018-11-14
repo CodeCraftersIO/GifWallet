@@ -5,18 +5,25 @@
 
 import Foundation
 
+public struct Signature {
+    let name: String
+    let value: String
+}
+
 public class APIClient {
     
     let environment: Environment
+    let signature: Signature?
     let urlSession: URLSession
     let jsonDecoder = JSONDecoder()
     
-    public init(environment: Environment) {
+    public init(environment: Environment, signature: Signature? = nil) {
         self.environment = environment
+        self.signature = signature
         self.urlSession = URLSession(configuration: .default)
     }
     
-    public func perform<T: Decodable>(request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
+    public func perform<T: Decodable>(_ request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
         let urlRequest: URLRequest
         do {
             urlRequest = try URLRequest(fromRequest: request)
@@ -66,17 +73,19 @@ public class APIClient {
     func requestForEndpoint<T>(_ endpoint: Endpoint) -> Request<T> {
         return Request<T>(
             endpoint: endpoint,
-            environment: environment
+            environment: environment,
+            signature: signature
         )
     }
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case malformedURL
         case malformedParameters
         case malformedJSONResponse
         case httpError
         case unknown
     }
+
 }
 
 public extension URLRequest {
@@ -91,6 +100,13 @@ public extension URLRequest {
         
         httpMethod = endpoint.method.rawValue
         allHTTPHeaderFields = endpoint.httpHeaderFields
+        setValue("GifWallet - iOS", forHTTPHeaderField: "User-Agent")
+        if let signature = request.signature {
+            setValue(
+                signature.value,
+                forHTTPHeaderField: signature.name
+            )
+        }
         
         //TODO: account for the parameter encoding.
         if let parameters = endpoint.parameters {

@@ -11,4 +11,5 @@ import Foundation
 public struct Request<ResponseType> {
     let endpoint: Endpoint
     let environment: Environment
+    let signature: Signature?
 }
