@@ -4,11 +4,14 @@
 //
 
 import Foundation
+import Deferred
 
 public struct Signature {
     let name: String
     let value: String
 }
+
+private let queue = DispatchQueue(label: "apiclient")
 
 public class APIClient {
     
@@ -22,51 +25,32 @@ public class APIClient {
         self.signature = signature
         self.urlSession = URLSession(configuration: .default)
     }
-    
-    public func perform<T: Decodable>(_ request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
-        URLRequest.createURLRequest(request: request) { (urlRequest, error) in
-            guard error == nil, let urlRequest = urlRequest else {
-                handler(nil, error)
-                return
-            }
 
-            let task = self.urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                guard error == nil else {
-                    handler(nil, error)
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse,
-                    (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 399) else {
-                        handler(nil, Error.httpError)
-                        return
-                }
-                
-                guard let data = data else {
-                    handler(nil, Error.unknown)
-                    return
-                }
-                
-                self.parseResponse(data: data, handler: { (object: T?, error: Swift.Error?) in
-                    guard error == nil, let object = object else {
-                        handler(nil, error)
-                        return
-                    }
-
-                    handler(object, nil)
-                })
-            }
-            task.resume()
+    public func perform<T: Decodable>(_ request: Request<T>) -> Task<T> {
+        let createRequestTask = URLRequest.createURLRequest(request: request)
+        let fetchDataTask = createRequestTask.andThen(upon: queue) { (urlRequest) in
+            return self.urlSession.fetchData(with: urlRequest)
+        }
+        return fetchDataTask.andThen(upon: queue) { (data) in
+            return self.parseResponse(data: data)
         }
     }
     
-    func parseResponse<T: Decodable>(data: Data, handler: @escaping (T?, Swift.Error?) -> Void) {
-        do {
-            let parsedResponse: T = try parseResponse(data: data)
-            handler(parsedResponse, nil)
-        } catch let error {
-            handler(nil, error)
+    public func perform<T: Decodable>(_ request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
+        self.perform(request).upon(.main) { (result) in
+            switch result {
+            case .success(let object):
+                handler(object, nil)
+            case .failure(let error):
+                handler(nil, error)
+            }
         }
+    }
+
+    func parseResponse<T: Decodable>(data: Data) -> Task<T> {
+        return Task.async(upon: queue, onCancel: Error.canceled, execute: {
+            return try self.parseResponse(data: data)
+        })
     }
     
     func parseResponse<T: Decodable>(data: Data) throws -> T {
@@ -90,21 +74,45 @@ public class APIClient {
         case malformedParameters
         case malformedJSONResponse
         case httpError
+        case canceled
         case unknown
     }
 
 }
 
-public extension URLRequest {
-    static func createURLRequest<T>(request: Request<T>, handler: @escaping (URLRequest?, Swift.Error?) -> Void) {
-        do {
-            let request = try URLRequest.init(fromRequest: request)
-            handler(request, nil)
-        } catch let error {
-            handler(nil, error)
+public extension URLSession {
+    func fetchData(with request: URLRequest) -> Task<Data> {
+        let deferred = Deferred<TaskResult<Data>>()
+        let dataTask = self.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                deferred.fill(with: TaskResult<Data>(failure: error!))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 399) else {
+                    deferred.fill(with: TaskResult<Data>(failure: APIClient.Error.httpError))
+                    return
+            }
+            
+            guard let data = data else {
+                deferred.fill(with: TaskResult<Data>(failure: APIClient.Error.unknown))
+                return
+            }
+            deferred.fill(with: TaskResult<Data>(success: data))
         }
+        dataTask.resume()
+        return Task(deferred)
     }
+}
 
+public extension URLRequest {
+    static func createURLRequest<T>(request: Request<T>) -> Task<URLRequest> {
+        return Task.async(upon: queue, onCancel: APIClient.Error.canceled, execute: {
+            return try URLRequest(fromRequest: request)
+        })
+    }
+    
     init<T>(fromRequest request: Request<T>) throws {
         let endpoint = request.endpoint
         let environment = request.environment
