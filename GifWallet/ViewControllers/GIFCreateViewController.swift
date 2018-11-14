@@ -12,7 +12,11 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
     private let saveButton = SaveButton()
     
     private let formValidator = GIFCreateFormValidator()
-    private var lastValidationErrors: Set<GIFCreateFormValidator.ValidationError> = []
+    private var lastValidationErrors: Set<GIFCreateFormValidator.ValidationError> = [] {
+        didSet {
+            saveButton.isEnabled = lastValidationErrors.isEmpty
+        }
+    }
 
     private init() {
         super.init(nibName: nil, bundle: nil)
@@ -35,13 +39,7 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
     }
     
     @objc func onSave() {
-        switch self.formValidator.validateForm() {
-        case .error(let errors):
-            self.lastValidationErrors = errors
-            self.tableView.reloadData()
-        case .ok:
-            self.dismissViewController()
-        }
+        self.dismissViewController()
     }
     
     //MARK: Private
@@ -171,9 +169,7 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
             formValidator.form.subtitle = text
             sectionToReload = .subtitle
         }
-        if case .error(let errors) = self.formValidator.validateForm() {
-            lastValidationErrors = errors
-        }
+        updateErrors()
         reloadSection(sectionToReload: sectionToReload)
     }
 
@@ -181,12 +177,14 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
         let cleanTag = newTag.trimmingCharacters(in: [" "])
         guard !cleanTag.isEmpty else { return }
         formValidator.form.tags.append(cleanTag)
+        updateErrors()
         reloadSection(sectionToReload: .tags)
     }
 
     func didSelectGIF(id: String, url: URL) {
         formValidator.form.gifURL = url
         formValidator.form.gifID = id
+        updateErrors()
         reloadSection(sectionToReload: .gifURL)
     }
 
@@ -194,5 +192,13 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
         let searchVC = GIFSearchViewController()
         searchVC.delegate = self
         show(searchVC, sender: nil)
+    }
+
+    private func updateErrors() {
+        if case .error(let errors) = self.formValidator.validateForm() {
+            lastValidationErrors = errors
+        } else {
+            lastValidationErrors.removeAll()
+        }
     }
 }
