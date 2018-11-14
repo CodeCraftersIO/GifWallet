@@ -24,14 +24,19 @@ class APIClientTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        apiClient = APIClient(environment: HTTPBin.Hosts.production)
+        apiClient = HTTPBinAPIClient(environment: HTTPBin.Hosts.production)
     }
     
     func testGET() {
         let exp = expectation(description: "Fetch completes")
         
-        apiClient.performRequest(forEndpoint: HTTPBin.API.ip) { (data, error) in
-            XCTAssert(data != nil)
+        apiClient.fetchIPAddress { (ip, error) in
+            guard let ip = ip else {
+                XCTFail()
+                exp.fulfill()
+                return
+            }
+            XCTAssert(ip.origin.count > 0)
             exp.fulfill()
         }
         

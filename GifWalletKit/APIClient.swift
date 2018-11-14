@@ -16,6 +16,29 @@ public class APIClient {
         self.urlSession = URLSession(configuration: .default)
     }
     
+    public func performRequestAndParseResponse<T: Decodable>(forEndpoint endpoint: Endpoint, handler: @escaping (T?, Swift.Error?) -> Void) {
+        self.performRequest(forEndpoint: endpoint) { (data, error) in
+            guard error == nil else {
+                handler(nil, error!)
+                return
+            }
+            guard let data = data else {
+                handler(nil, Error.unknown)
+                return
+            }
+            
+            let response: T
+            do {
+                response = try self.parseResponse(data: data)
+            } catch let error {
+                handler(nil, error)
+                return
+            }
+            
+            handler(response, nil)
+        }
+    }
+    
     public func performRequest(forEndpoint endpoint: Endpoint, handler: @escaping (Data?, Swift.Error?) -> ()) {
         
         let urlRequest: URLRequest
