@@ -36,29 +36,14 @@ public class APIClient {
         }
     }
     
-    public func perform<T: Decodable>(_ request: Request<T>, handler: @escaping (T?, Swift.Error?) -> Void) {
-        self.perform(request).upon(.main) { (result) in
-            switch result {
-            case .success(let object):
-                handler(object, nil)
-            case .failure(let error):
-                handler(nil, error)
-            }
-        }
-    }
-
     func parseResponse<T: Decodable>(data: Data) -> Task<T> {
         return Task.async(upon: queue, onCancel: Error.canceled, execute: {
-            return try self.parseResponse(data: data)
+            do {
+                return try self.jsonDecoder.decode(T.self, from: data)
+            } catch {
+                throw Error.malformedJSONResponse
+            }
         })
-    }
-    
-    func parseResponse<T: Decodable>(data: Data) throws -> T {
-        do {
-            return try jsonDecoder.decode(T.self, from: data)
-        } catch {
-            throw Error.malformedJSONResponse
-        }
     }
     
     func requestForEndpoint<T>(_ endpoint: Endpoint) -> Request<T> {
