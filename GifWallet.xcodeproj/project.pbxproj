@@ -32,6 +32,7 @@
 		96BD2327B9BF84651CC63C62 /* Pods_GifWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE38F6BB5FC7E7F8B0E1334 /* Pods_GifWalletKit.framework */; };
 		BB5A375B34287EF322E8CE6C /* Pods_GifWalletKit_GifWalletKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09347F8584C9630E0D15A826 /* Pods_GifWalletKit_GifWalletKitTests.framework */; };
 		ED143920CEA670D73CA8E19F /* Pods_GifWallet_GifWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD12FD342277989B1726DD3 /* Pods_GifWallet_GifWalletTests.framework */; };
+		F522DAF0219DCABF00C969F4 /* GIFCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522DAEF219DCABF00C969F4 /* GIFCreatePresenter.swift */; };
 		F5684E39219C5B8E00561AA0 /* XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E38219C5B8E00561AA0 /* XCTest.swift */; };
 		F5684E3E219C728100561AA0 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E3B219C728100561AA0 /* DataStore.swift */; };
 		F5684E3F219C728100561AA0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5684E3C219C728100561AA0 /* Model.xcdatamodeld */; };
@@ -147,6 +148,7 @@
 		EB917FFF330B673130E053ED /* Pods-GifWallet-GifWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWallet-GifWalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GifWallet-GifWalletTests/Pods-GifWallet-GifWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		EDD12FD342277989B1726DD3 /* Pods_GifWallet_GifWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GifWallet_GifWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37C409329CA733B10233F28 /* Pods-GifWalletKit-GifWalletKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifWalletKit-GifWalletKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GifWalletKit-GifWalletKitTests/Pods-GifWalletKit-GifWalletKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F522DAEF219DCABF00C969F4 /* GIFCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFCreatePresenter.swift; sourceTree = "<group>"; };
 		F5684E38219C5B8E00561AA0 /* XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.swift; sourceTree = "<group>"; };
 		F5684E3B219C728100561AA0 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F5684E3D219C728100561AA0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -305,11 +307,11 @@
 		F5C7BEA0218B2A660049C729 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				67BA79512193A18E00E6F9DB /* GIFSearchViewController.swift */,
-				F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */,
-				F5C7BEB7218B45240049C729 /* GIFCreateViewController.swift */,
-				F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */,
 				F5C7BEB5218B44A00049C729 /* GIFWalletViewController.swift */,
+				F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */,
+				67BA79512193A18E00E6F9DB /* GIFSearchViewController.swift */,
+				F5C7BEB7218B45240049C729 /* GIFCreateViewController.swift */,
+				F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 				67BA79532193A22B00E6F9DB /* GIFSearchPresenter.swift */,
 				F5C7BEAC218B30C50049C729 /* GIFDetailsPresenter.swift */,
 				F5C7BECA218B50210049C729 /* GIFWalletPresenter.swift */,
+				F522DAEF219DCABF00C969F4 /* GIFCreatePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -850,6 +853,7 @@
 				F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */,
 				F5C7BEB4218B381C0049C729 /* UILabel+Wallet.swift in Sources */,
 				F5C7BEC9218B4ECA0049C729 /* GIFCollectionViewCell.swift in Sources */,
+				F522DAF0219DCABF00C969F4 /* GIFCreatePresenter.swift in Sources */,
 				F5C7BED4218B67790049C729 /* CollectionViewStatefulDataSource.swift in Sources */,
 				F5C7BEB8218B45240049C729 /* GIFCreateViewController.swift in Sources */,
 			);

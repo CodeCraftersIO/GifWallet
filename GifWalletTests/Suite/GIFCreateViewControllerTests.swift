@@ -12,7 +12,14 @@ import XCTest
 class GIFCreateViewControllerTests: SnapshotTest {
 
     func testGIFCreateViewController() {
-        let vc = GIFCreateViewController.Factory.viewController()
+        let observer = MockObserver()
+        let vc = GIFCreateViewController.Factory.viewController(presenter: GIFCreateViewController.MockPresenter(observer: observer))
         waitABitAndVerify(viewController: vc)
+    }
+}
+
+class MockObserver: GIFCreateObserver {
+    func didCreateGIF() {
+        
     }
 }

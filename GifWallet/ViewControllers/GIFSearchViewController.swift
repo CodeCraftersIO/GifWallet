@@ -60,13 +60,21 @@ final class GIFSearchViewController: UIViewController {
 
         self.dataSource.state = .loading
         if searchTerm.isEmpty {
-            presenter.trendingGifs { (results) in
-                self.dataSource.state = .loaded(data: results)
+            presenter.trendingGifs { (results, error) in
+                if let error = error {
+                    self.dataSource.state = .failure(error: error)
+                } else {
+                    self.dataSource.state = .loaded(data: results!)
+                }
             }
         }
         else {
-            presenter.searchGifs(term: searchTerm) { (results) in
-                self.dataSource.state = .loaded(data: results)
+            presenter.searchGifs(term: searchTerm) { (results, error) in
+                if let error = error {
+                    self.dataSource.state = .failure(error: error)
+                } else {
+                    self.dataSource.state = .loaded(data: results!)
+                }
             }
         }
     }
