@@ -53,7 +53,7 @@ extension GIFWalletViewController {
         }
         
         func addNewGIFViewController(observer: GIFCreateObserver) -> UIViewController {
-            let presenter = GIFCreateViewController.Presenter.init(observer: observer)
+            let presenter = GIFCreateViewController.Presenter(observer: observer)
             presenter.dataStore = dataStore
             return GIFCreateViewController.Factory.viewController(presenter: presenter)
         }

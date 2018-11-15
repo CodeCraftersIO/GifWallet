@@ -200,7 +200,7 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
     }
 
     func didTapGIFInputView(_ inputView: GIFInputView) {
-        let searchVC = GIFSearchViewController()
+        let searchVC = GIFSearchViewController(presenter: GIFSearchViewController.Presenter())
         searchVC.delegate = self
         show(searchVC, sender: nil)
     }
