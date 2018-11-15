@@ -23,13 +23,20 @@ public class DataStore {
             managedObjectModel: model
         )
 
-        let description = NSPersistentStoreDescription()
+        let description = NSPersistentStoreDescription(url: {
+            let storeDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            return storeDirectory.appendingPathComponent("GifModel.sqlite")
+        }())
         description.type = kind.coreDataRepresentation
         description.shouldAddStoreAsynchronously = shouldLoadAsync
         persistentStore.persistentStoreDescriptions = [description]
     }
 
     public func loadAndMigrateIfNeeded() -> Task<()> {
+        guard !self.storeIsReady else {
+            return Task(success: ())
+        }
+        
         let deferred = Deferred<TaskResult<()>>()
         persistentStore.loadPersistentStores { (description, error) in
             if let error = error {
@@ -43,7 +50,7 @@ public class DataStore {
     }
 
     //MARK: GIF Creation
-    func createGIF(giphyID: String, title: String, subtitle: String, url: URL, tags: Set<String>) -> Task<()> {
+    public func createGIF(giphyID: String, title: String, subtitle: String, url: URL, tags: Set<String>) -> Task<()> {
         let deferred = Deferred<TaskResult<()>>()
         guard self.storeIsReady else {
             deferred.fill(with: TaskResult<()>(failure: DataStore.Error.dataStoreNotInitialized))
@@ -82,15 +89,15 @@ public class DataStore {
         return Task(deferred)
     }
 
-    func fetchGIF(id: String) throws -> ManagedGIF? {
+    public func fetchGIF(id: String) throws -> ManagedGIF? {
         return self.fetchGIF(id: id, moc: self.persistentStore.viewContext)
     }
 
-    func fetchGIFs(withTag tag: String) throws -> Set<ManagedGIF> {
+    public func fetchGIFs(withTag tag: String) throws -> Set<ManagedGIF> {
         return self.fetchTag(name: tag, moc: self.persistentStore.viewContext)?.gifs ?? []
     }
 
-    func fetchGIFsSortedByCreationDate() -> Task<[ManagedGIF]> {
+    public func fetchGIFsSortedByCreationDate() -> Task<[ManagedGIF]> {
         return self.fetchGIFsSortedByCreationDate(moc: self.persistentStore.viewContext)
     }
 

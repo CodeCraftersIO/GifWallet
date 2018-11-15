@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 }
 
+import GifWalletKit
+
 class Wireframe {
 
     init() {
@@ -46,7 +48,10 @@ class Wireframe {
     }
 
     func initialViewController() -> UIViewController {
-        let navigationController = UINavigationController(rootViewController: GIFWalletViewController())
+        let dataStore = DataStore()
+        let presenter = GIFWalletViewController.Presenter(dataStore: dataStore)
+        let vc = GIFWalletViewController(presenter: presenter)
+        let navigationController = UINavigationController(rootViewController: vc)
         return navigationController
     }
 

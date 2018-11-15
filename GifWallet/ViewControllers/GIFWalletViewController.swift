@@ -14,7 +14,6 @@ class GIFWalletViewController: UIViewController {
     var presenter: GIFWalletPresenterType = GIFWalletViewController.MockDataPresenter()
 
     var collectionView: UICollectionView!
-    var collectionViewLayout: UICollectionViewFlowLayout!
     var dataSource: CollectionViewStatefulDataSource<GIFCollectionViewCell>!
     
     init(presenter: GIFWalletPresenterType = MockDataPresenter()) {
@@ -41,11 +40,10 @@ class GIFWalletViewController: UIViewController {
             state: .loading, collectionView: collectionView
         )
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGif))
-        fetchData()
     }
     
     @objc func addNewGif() {
-        let createVC = GIFCreateViewController.Factory.viewController()
+        let createVC = presenter.addNewGIFViewController(observer: self)
         self.present(createVC, animated: true, completion: nil)
     }
     
@@ -65,7 +63,8 @@ class GIFWalletViewController: UIViewController {
         self.dataSource.state = .loading
         presenter.fetchData { [weak self] (results, error) in
             guard let `self` = self else { return }
-            if error != nil {
+            guard error == nil else {
+                self.dataSource.state = .failure(error: error!)
                 return
             }
             
@@ -82,5 +81,13 @@ extension GIFWalletViewController: UICollectionViewDelegate {
         let gifVM = data[indexPath.item]
         let vc = GIFDetailsViewController(gifID: gifVM.id)
         self.show(vc, sender: nil)
+    }
+}
+
+extension GIFWalletViewController: GIFCreateObserver {
+    func didCreateGIF() {
+        self.dismiss(animated: true) {
+            self.fetchData()
+        }
     }
 }
