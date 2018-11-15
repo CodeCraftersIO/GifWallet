@@ -36,6 +36,8 @@
 		F5684E3E219C728100561AA0 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E3B219C728100561AA0 /* DataStore.swift */; };
 		F5684E3F219C728100561AA0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5684E3C219C728100561AA0 /* Model.xcdatamodeld */; };
 		F5684E41219C729400561AA0 /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E40219C729400561AA0 /* DataStoreTests.swift */; };
+		F5684E44219C8F1E00561AA0 /* ManagedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E43219C8F1D00561AA0 /* ManagedModels.swift */; };
+		F5684E46219C984F00561AA0 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E45219C984F00561AA0 /* CoreDataExtensions.swift */; };
 		F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */; };
 		F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA3218B2A9E0049C729 /* UIColor+Extension.swift */; };
 		F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */; };
@@ -149,6 +151,8 @@
 		F5684E3B219C728100561AA0 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F5684E3D219C728100561AA0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F5684E40219C729400561AA0 /* DataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
+		F5684E43219C8F1D00561AA0 /* ManagedModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedModels.swift; sourceTree = "<group>"; };
+		F5684E45219C984F00561AA0 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutTestsViewController.swift; sourceTree = "<group>"; };
 		F5C7BEA3218B2A9E0049C729 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFDetailsViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				F5684E3B219C728100561AA0 /* DataStore.swift */,
+				F5684E45219C984F00561AA0 /* CoreDataExtensions.swift */,
+				F5684E43219C8F1D00561AA0 /* ManagedModels.swift */,
 				F5684E3C219C728100561AA0 /* Model.xcdatamodeld */,
 			);
 			path = DataStore;
@@ -864,7 +870,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5684E46219C984F00561AA0 /* CoreDataExtensions.swift in Sources */,
 				F5684E3E219C728100561AA0 /* DataStore.swift in Sources */,
+				F5684E44219C8F1E00561AA0 /* ManagedModels.swift in Sources */,
 				F5D1D49120499ED00012E800 /* APIClient.swift in Sources */,
 				67C5C678219AAEA000E563ED /* Environment.swift in Sources */,
 				F5684E3F219C728100561AA0 /* Model.xcdatamodeld in Sources */,

@@ -12,7 +12,7 @@ class DataStoreTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dataStore = DataStore(kind: .memory)
+        dataStore = DataStore(kind: .memory, shouldLoadAsync: false)
         let task = dataStore.loadAndMigrateIfNeeded()
         _ = try? waitForTask(task)
         XCTAssert(dataStore.storeIsReady)
@@ -35,13 +35,14 @@ class DataStoreTests: XCTestCase {
         XCTAssert(managedGIF.giphyID == id)
         XCTAssert(managedGIF.title == "James Bond")
         XCTAssert(managedGIF.creationDate != nil)
+        XCTAssert(managedGIF.tags.contains("007"))
     }
     
     func testCreateAFetchGIFTwice() throws {
 
         let id = "007"
         let createTask1 = dataStore.createGIF(
-            giphyID: "007",
+            giphyID: id,
             title: "James Bond",
             subtitle: "GoldenEye",
             url: URL(string: "google.com/007")!,
@@ -50,7 +51,7 @@ class DataStoreTests: XCTestCase {
         _ = try waitForTask(createTask1)
 
         let createTask2 = dataStore.createGIF(
-            giphyID: "007",
+            giphyID: id,
             title: "James Bond",
             subtitle: "Tomorrow Never Dies",
             url: URL(string: "google.com/007")!,
@@ -61,13 +62,59 @@ class DataStoreTests: XCTestCase {
         guard let managedGIF = try dataStore.fetchGIF(id: id) else {
             throw Error.objectUnwrappedFailed
         }
-        XCTAssert(managedGIF.giphyID == id)
         XCTAssert(managedGIF.subtitle == "Tomorrow Never Dies")
-
     }
 
+    func testFetchGIFsViaTag() throws {
+        let sampleTag = "007"
+        let createTask = dataStore.createGIF(
+            giphyID: "007",
+            title: "James Bond",
+            subtitle: "GoldenEye",
+            url: URL(string: "google.com/007")!,
+            tags: ["007"]
+        )
+        _ = try waitForTask(createTask)
+
+        let managedGIFs = try dataStore.fetchGIFs(withTag: sampleTag)
+        guard managedGIFs.count > 0 else {
+            throw Error.objectUnwrappedFailed
+        }
+        XCTAssert(managedGIFs.count == 1)
+    }
+
+    func testQueryAllGIFsChronologically() throws {
+        let JamesBondID = "007"
+        let createTask1 = dataStore.createGIF(
+            giphyID: "007",
+            title: "James Bond",
+            subtitle: "GoldenEye",
+            url: URL(string: "google.com/007")!,
+            tags: ["007"]
+        )
+        _ = try waitForTask(createTask1)
+
+        let SupermanID = "Superman"
+        let createTask2 = dataStore.createGIF(
+            giphyID: SupermanID,
+            title: "Superman",
+            subtitle: "Kryptonite",
+            url: URL(string: "google.com/superman")!,
+            tags: ["Superman"]
+        )
+        _ = try waitForTask(createTask2)
+
+        let fetchTask = dataStore.fetchGIFsSortedByCreationDate()
+        let managedGIFs = try waitForTask(fetchTask)
+        guard let firstGIF = managedGIFs.first, let secondGIF = managedGIFs.last else {
+            throw Error.objectUnwrappedFailed
+        }
+
+        XCTAssert(firstGIF.giphyID == SupermanID)
+        XCTAssert(secondGIF.giphyID == JamesBondID)
+    }
+    
     enum Error: Swift.Error {
         case objectUnwrappedFailed
     }
 }
-
