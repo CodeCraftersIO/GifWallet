@@ -47,7 +47,7 @@
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5D1D47920499E300012E800"
@@ -57,12 +57,22 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5D1D44F20499B880012E800"
                BuildableName = "GifWalletTests.xctest"
                BlueprintName = "GifWalletTests"
+               ReferencedContainer = "container:GifWallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F58A991F219DE23600163EE7"
+               BuildableName = "GifWalletUITests.xctest"
+               BlueprintName = "GifWalletUITests"
                ReferencedContainer = "container:GifWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>

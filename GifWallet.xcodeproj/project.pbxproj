@@ -39,6 +39,7 @@
 		F5684E41219C729400561AA0 /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E40219C729400561AA0 /* DataStoreTests.swift */; };
 		F5684E44219C8F1E00561AA0 /* ManagedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E43219C8F1D00561AA0 /* ManagedModels.swift */; };
 		F5684E46219C984F00561AA0 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5684E45219C984F00561AA0 /* CoreDataExtensions.swift */; };
+		F58A9923219DE23600163EE7 /* GifWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A9922219DE23600163EE7 /* GifWalletUITests.swift */; };
 		F5C7BEA2218B2A660049C729 /* AutoLayoutTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */; };
 		F5C7BEA4218B2A9E0049C729 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA3218B2A9E0049C729 /* UIColor+Extension.swift */; };
 		F5C7BEA7218B30B20049C729 /* GIFDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */; };
@@ -70,6 +71,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F58A9925219DE23600163EE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5D1D43220499B870012E800 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5D1D43920499B880012E800;
+			remoteInfo = GifWallet;
+		};
 		F5D1D45120499B880012E800 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F5D1D43220499B870012E800 /* Project object */;
@@ -155,6 +163,9 @@
 		F5684E40219C729400561AA0 /* DataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		F5684E43219C8F1D00561AA0 /* ManagedModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedModels.swift; sourceTree = "<group>"; };
 		F5684E45219C984F00561AA0 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		F58A9920219DE23600163EE7 /* GifWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GifWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F58A9922219DE23600163EE7 /* GifWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifWalletUITests.swift; sourceTree = "<group>"; };
+		F58A9924219DE23600163EE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutTestsViewController.swift; sourceTree = "<group>"; };
 		F5C7BEA3218B2A9E0049C729 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFDetailsViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +204,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F58A991D219DE23600163EE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5D1D43720499B880012E800 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +322,15 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
+		F58A9921219DE23600163EE7 /* GifWalletUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F58A9922219DE23600163EE7 /* GifWalletUITests.swift */,
+				F58A9924219DE23600163EE7 /* Info.plist */,
+			);
+			path = GifWalletUITests;
+			sourceTree = "<group>";
+		};
 		F5C7BEA0218B2A660049C729 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +424,7 @@
 				F5D1D45320499B880012E800 /* GifWalletTests */,
 				F5D1D47320499E2F0012E800 /* GifWalletKit */,
 				F5D1D48020499E300012E800 /* GifWalletKitTests */,
+				F58A9921219DE23600163EE7 /* GifWalletUITests */,
 				F5D1D43B20499B880012E800 /* Products */,
 				DD0F61E484A967F269BCA9C1 /* Pods */,
 				31A69FBC168507F31CDD8F8B /* Frameworks */,
@@ -410,6 +438,7 @@
 				F5D1D45020499B880012E800 /* GifWalletTests.xctest */,
 				F5D1D47220499E2F0012E800 /* GifWalletKit.framework */,
 				F5D1D47A20499E300012E800 /* GifWalletKitTests.xctest */,
+				F58A9920219DE23600163EE7 /* GifWalletUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -493,6 +522,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F58A991F219DE23600163EE7 /* GifWalletUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F58A9929219DE23600163EE7 /* Build configuration list for PBXNativeTarget "GifWalletUITests" */;
+			buildPhases = (
+				F58A991C219DE23600163EE7 /* Sources */,
+				F58A991D219DE23600163EE7 /* Frameworks */,
+				F58A991E219DE23600163EE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F58A9926219DE23600163EE7 /* PBXTargetDependency */,
+			);
+			name = GifWalletUITests;
+			productName = GifWalletUITests;
+			productReference = F58A9920219DE23600163EE7 /* GifWalletUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F5D1D43920499B880012E800 /* GifWallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5D1D46420499B880012E800 /* Build configuration list for PBXNativeTarget "GifWallet" */;
@@ -580,10 +627,15 @@
 		F5D1D43220499B870012E800 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Pierluigi Cifani";
 				TargetAttributes = {
+					F58A991F219DE23600163EE7 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F5D1D43920499B880012E800;
+					};
 					F5D1D43920499B880012E800 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -623,11 +675,19 @@
 				F5D1D44F20499B880012E800 /* GifWalletTests */,
 				F5D1D47120499E2F0012E800 /* GifWalletKit */,
 				F5D1D47920499E300012E800 /* GifWalletKitTests */,
+				F58A991F219DE23600163EE7 /* GifWalletUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F58A991E219DE23600163EE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5D1D43820499B880012E800 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -822,6 +882,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F58A991C219DE23600163EE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58A9923219DE23600163EE7 /* GifWalletUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5D1D43620499B880012E800 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -903,6 +971,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F58A9926219DE23600163EE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5D1D43920499B880012E800 /* GifWallet */;
+			targetProxy = F58A9925219DE23600163EE7 /* PBXContainerItemProxy */;
+		};
 		F5D1D45220499B880012E800 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F5D1D43920499B880012E800 /* GifWallet */;
@@ -937,6 +1010,43 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F58A9927219DE23600163EE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JC3H35UYFP;
+				INFOPLIST_FILE = GifWalletUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theleftbit.GifWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GifWallet;
+			};
+			name = Debug;
+		};
+		F58A9928219DE23600163EE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JC3H35UYFP;
+				INFOPLIST_FILE = GifWalletUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theleftbit.GifWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GifWallet;
+			};
+			name = Release;
+		};
 		F5D1D46220499B880012E800 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1201,6 +1311,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F58A9929219DE23600163EE7 /* Build configuration list for PBXNativeTarget "GifWalletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F58A9927219DE23600163EE7 /* Debug */,
+				F58A9928219DE23600163EE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F5D1D43520499B870012E800 /* Build configuration list for PBXProject "GifWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
