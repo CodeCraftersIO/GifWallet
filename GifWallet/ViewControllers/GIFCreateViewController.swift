@@ -14,7 +14,10 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
     private let formValidator = GIFCreateFormValidator()
     private var lastValidationErrors: Set<GIFCreateFormValidator.ValidationError> = []
 
-    private init() {
+    private var presenter: GIFCreatePresenterType
+
+    private init(presenter: GIFCreatePresenterType) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,7 +43,13 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
             self.lastValidationErrors = errors
             self.tableView.reloadData()
         case .ok:
-            self.dismissViewController()
+            self.presenter.createGIF(
+                giphyID: self.formValidator.form.gifID!,
+                title: self.formValidator.form.title!,
+                subtitle: self.formValidator.form.subtitle!,
+                url: self.formValidator.form.gifURL!,
+                tags: Set(self.formValidator.form.tags)
+            )
         }
     }
     
@@ -144,8 +153,8 @@ class GIFCreateViewController: UIViewController, UITableViewDataSource {
     
 extension GIFCreateViewController {
     enum Factory {
-        static func viewController() -> UIViewController {
-            let createVC = GIFCreateViewController()
+        static func viewController(presenter: GIFCreatePresenterType) -> UIViewController {
+            let createVC = GIFCreateViewController(presenter: presenter)
             let navController = UINavigationController(rootViewController: createVC)
             navController.modalPresentationStyle = .formSheet
             return navController
@@ -191,7 +200,7 @@ extension GIFCreateViewController: GIFInputViewDelegate, TextInputViewDelegate, 
     }
 
     func didTapGIFInputView(_ inputView: GIFInputView) {
-        let searchVC = GIFSearchViewController()
+        let searchVC = GIFSearchViewController(presenter: GIFSearchViewController.Presenter())
         searchVC.delegate = self
         show(searchVC, sender: nil)
     }
