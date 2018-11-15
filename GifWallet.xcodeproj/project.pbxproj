@@ -307,11 +307,11 @@
 		F5C7BEA0218B2A660049C729 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				67BA79512193A18E00E6F9DB /* GIFSearchViewController.swift */,
-				F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */,
-				F5C7BEB7218B45240049C729 /* GIFCreateViewController.swift */,
-				F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */,
 				F5C7BEB5218B44A00049C729 /* GIFWalletViewController.swift */,
+				F5C7BEA6218B30B20049C729 /* GIFDetailsViewController.swift */,
+				67BA79512193A18E00E6F9DB /* GIFSearchViewController.swift */,
+				F5C7BEB7218B45240049C729 /* GIFCreateViewController.swift */,
+				F5C7BEA1218B2A660049C729 /* AutoLayoutTestsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
