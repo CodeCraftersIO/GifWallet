@@ -53,6 +53,7 @@ class GIFWalletViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.pinToSuperview()
         collectionView.backgroundColor = .white
+        collectionView.delegate = self
         dataSource = CollectionViewStatefulDataSource<GIFCollectionViewCell>(
             state: .loading,
             collectionView: collectionView
@@ -79,7 +80,7 @@ extension GIFWalletViewController: UICollectionViewDelegate {
             return
         }
         let gifVM = data[indexPath.item]
-        let vc = GIFDetailsViewController(gifID: gifVM.id)
+        let vc = self.presenter.detailsViewController(gifID: gifVM.id)
         self.show(vc, sender: nil)
     }
 }
