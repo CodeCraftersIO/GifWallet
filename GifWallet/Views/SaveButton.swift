@@ -26,6 +26,9 @@ final class SaveButton: UIButton {
     private func setup() {
         backgroundColor = UIColor.GifWallet.brand
         setTitle("Save", for: .normal)
+        setTitleColor(.white, for: .normal)
+        setTitleColor(.lightGray, for: .disabled)
+        isEnabled = false
     }
     
     override func safeAreaInsetsDidChange() {
